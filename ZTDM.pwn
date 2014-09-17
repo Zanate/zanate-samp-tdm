@@ -107,7 +107,6 @@
 #define DIALOG_CLWEP3 28
 #define DIALOG_CLWEP4 29
 
-
 /* Teams */
 
 #define TEAM_GROVE 1
@@ -127,10 +126,10 @@
 #define db "samp"
 #define pass ""*/
 
-#define host "96.126.114.6"
-#define user "SAMP"
+#define host "127.0.0.1"
+#define user "root"
 #define db "samp"
-#define pass "sanandreas"
+#define pass ""
 
 
 static
@@ -165,7 +164,8 @@ enum pInfo
 	pClRank,
 	pClLeader,
 	pInvited,
-	pInviting
+	pInviting,
+	pSkin
 }
 new PlayerInfo[MAX_PLAYERS][pInfo];
 
@@ -346,7 +346,7 @@ public OnGameModeInit()
 	// Don't use these lines if it's a filterscript
     mysql_log(LOG_ERROR | LOG_WARNING | LOG_DEBUG);
     mysql = mysql_connect(host, user, db, pass); 
-    if(mysql_errno(mysql) != 0) print("Oh snap! Something went wrong, MySql connection failed!");
+    if(mysql_errno(mysql) != 0) print("Oh snap! Something went wrong, MySQL connection failed!");
 
 	SetGameModeText(version);
 	AddPlayerClass(105, 2532.2742, -1667.6622, 15.1689, 93.1338, 0, 0, 0, 0, 0, 0); // Grove St
@@ -615,6 +615,7 @@ public OnPlayerConnect(playerid)
 	PlayerInfo[playerid][pClLeader] = 0;
 	PlayerInfo[playerid][pInvited] = 0;
 	PlayerInfo[playerid][pInviting] = 0;
+	PlayerInfo[playerid][pSkin] = 0;
 	SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 
 	/* Login screen */
@@ -659,6 +660,7 @@ public OnPlayerSpawn(playerid)
 	{
 	    SetPlayerPos(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cx], ClanInfo[PlayerInfo[playerid][pClan]][cy], ClanInfo[PlayerInfo[playerid][pClan]][cz]);
         SetPlayerSkin(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cSkin]);
+        PlayerInfo[playerid][pSkin] = GetPlayerSkin(playerid);
 		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1], 1);
 		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep2], 150);
 		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3], 300);
@@ -760,7 +762,7 @@ public OnPlayerDeath(playerid, killerid, reason)
     PlayerInfo[killerid][pMoney] += 500;
 	GivePlayerMoney(playerid, -300);
 	PlayerInfo[playerid][pMoney] -= 300;
-    GivePlayerMoney(playerid, 100);
+    /*GivePlayerMoney(playerid, 100);*/
 	KillStreak[killerid]++;
 	KillStreak[playerid] = 0;
 	KillTimer(timer[playerid]);
@@ -1377,6 +1379,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    PlayerInfo[playerid][pKills] = 0;
 				    PlayerInfo[playerid][pDeaths] = 0;
 				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully reseted your stats.");
+				}
+                case 3:
+				{
+					ShowModelSelectionMenu(playerid, skinlist, "Seleccionar skin");
+					PlayerInfo[playerid][pSkin] = GetPlayerSkin(playerid);
+					format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your skin.");
+					SendClientMessage(playerid, COLOR_GREY, string);
+
 				}
 			}
 		}
@@ -2489,6 +2499,7 @@ public OnAccountLoad(playerid)
     PlayerInfo[playerid][pClLeader] = cache_get_field_content_int(0, "ClLeader");
     PlayerInfo[playerid][pInvited] = cache_get_field_content_int(0, "Invited");
     PlayerInfo[playerid][pInviting] = cache_get_field_content_int(0, "Inviting");
+    PlayerInfo[playerid][pSkin] = cache_get_field_content_int(0, "Skin");
 
 
 	if(PlayerInfo[playerid][pBanned] == 1)
@@ -3155,8 +3166,8 @@ public SaveAccountStats(playerid)
 		PlayerInfo[playerid][pWarns]);
 	    mysql_format(mysql, query, sizeof(query), "%s`VW`=%d, `Interior`=%d, `Min`=%d, `Hours`=%d, `PM`=%d, `Color`=%d, `Turfs`=%d, `Clan`=%d, ",\
 	 	query, PlayerInfo[playerid][pVW], PlayerInfo[playerid][pInt], PlayerInfo[playerid][pMin], PlayerInfo[playerid][pHour], PlayerInfo[playerid][pPM], PlayerInfo[playerid][pColor], PlayerInfo[playerid][pTurfs], PlayerInfo[playerid][pClan]);
-		mysql_format(mysql, query, sizeof(query), "%s`ClRank`=%d, `ClLeader`=%d, `Invited`=%d, `Inviting`=%d  WHERE `ID`=%d",\
-		query, PlayerInfo[playerid][pClRank], PlayerInfo[playerid][pClLeader], PlayerInfo[playerid][pInvited], PlayerInfo[playerid][pInviting],  PlayerInfo[playerid][pID]);
+		mysql_format(mysql, query, sizeof(query), "%s`ClRank`=%d, `ClLeader`=%d, `Invited`=%d, `Inviting`=%d, `Skin`=%d  WHERE `ID`=%d",\
+		query, PlayerInfo[playerid][pClRank], PlayerInfo[playerid][pClLeader], PlayerInfo[playerid][pInvited], PlayerInfo[playerid][pInviting], PlayerInfo[playerid][pSkin],  PlayerInfo[playerid][pID]);
 		mysql_tquery(mysql, query, "", "");
 		return 1;
 	}
@@ -3386,7 +3397,7 @@ KickWithMessage(targetid, reason[])
     return 1;
 }
 //==============================================================================
-//                       Trainee Administrator Commands
+//                       Junior Administrator Commands
 //==============================================================================
 
 CMD:a(playerid, params[])
@@ -3601,7 +3612,7 @@ CMD:clearcheck(playerid, params[])
 }
 
 //==============================================================================
-//                          Administrator Commands
+//                          General Administrator Commands
 //==============================================================================
 
 CMD:gethere(playerid,params[])
@@ -3702,6 +3713,24 @@ CMD:giveexp(playerid, params[])
 		SetPlayerScore(targetid, GetPlayerScore(targetid) + amount);
 		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has gave you %d EXP points", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
+	}
+	return 1;
+}
+
+CMD:setskin(playerid, params[])
+{
+	if(Logged[playerid] == 1)
+	{
+		new targetid, string[128];
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(sscanf(params, "ud", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setskin [playerid]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		ShowModelSelectionMenu(targetid, skinlist, "Seleccionar skin");
+		PlayerInfo[targetid][pSkin] = GetPlayerSkin(targetid);
+		format(string, sizeof(string), "INFO:{FFFFFF} %s has changed your skin.", GetName(playerid));
+		SendClientMessage(targetid, COLOR_GREY, string);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully changed %s's skin.", GetName(targetid));
+		SendClientMessage(playerid, COLOR_RED, string);
 	}
 	return 1;
 }
@@ -3883,6 +3912,23 @@ CMD:setdeaths(playerid, params[])
 	return 1;
 }
 
+CMD:setmoney(playerid, params[])
+{
+	if(Logged[playerid] == 1)
+	{
+		new targetid, amount, string[128];
+		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setmoney [playerid] [amount]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+  		SetPlayerMoney(targetid, amount);
+		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your money to %d.", GetName(playerid), amount);
+		SendClientMessage(targetid, COLOR_GREY, string);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's money to %d.", GetName(targetid), amount);
+		SendClientMessage(playerid, COLOR_RED, string);
+	}
+	return 1;
+}
+
 
 //==============================================================================
 //                          Lead Administrator Commands
@@ -3938,6 +3984,22 @@ CMD:blowup(playerid, params[])
 	}
    	return 1;
 }
+
+/*CMD:giveweapon(playerid, params[])
+{
+    if(Logged[playerid] == 1)
+	{
+        new targetid, Float:x, Float:y, Float:z, str[126];
+		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	 	if(sscanf(params,"d", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /giveweapon [playerid] [weaponid]\n ");
+	  	if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		else
+		{
+	    	 "Choose weapon", "Brass Knuckles\nGolf Club\nNightstick\nKnife\nBaseball Bat\nShovel\nPool Cue\nKatana\nChainsaw\nPurple Dildo\nDildo\nVibrator\nSilver Vibrator\nFlowers\nCane\nGrenade\nTear Gas\nMolotov Cocktail\n9mm\nSilenced 9mm\nDesert Eagle\nShotgun\nSawnoff Shotgun\nCombat Shotgun\nUzi\nMP5\nAK-47\nM4\nTec-9\nCountry Rifle\nSniper Rifle\nRPG\nHS-Rocket\nFlamethrower\nMinigun\nSatchel Charge\nDetonator\nSpraycan\nFire Extinguisher\nCamera\nParachute", "Select", "Cancel"));
+		}
+	}
+	return 1;
+}*/
 
 //This command has been removed and needs to be changed to MySql format for it to work! - Blast3r.
 /*CMD:changename(playerid, params[])
@@ -4521,7 +4583,7 @@ CMD:vip(playerid, params[])
 	 	}
 	 	if(PlayerInfo[playerid][pVip] >= 4)
 		{
-	 		ShowPlayerDialog(playerid, DIALOG_VIP, DIALOG_STYLE_LIST, "VIP Menu", "VIP Color\nToggle PMs\nReset Stats", "Select", "Cancel");
+	 		ShowPlayerDialog(playerid, DIALOG_VIP, DIALOG_STYLE_LIST, "VIP Menu", "VIP Color\nToggle PMs\nReset Stats\nCambiar Skin", "Select", "Cancel");
 	 	}
 	}
 	return 1;
@@ -4764,7 +4826,7 @@ CMD:givemoney(playerid, params[])
 		else if(amount < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Amount can't be less than 1.");
 		else if(PlayerInfo[playerid][pMoney] < amount) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have that much money.");
 	    else if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-		else if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Giving money to yourself? How about no?");
+		else if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can't give money to yourself.");
 		else
 	    {
 			GivePlayerMoney(playerid, -amount);
