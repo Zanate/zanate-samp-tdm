@@ -2765,20 +2765,20 @@ public TextDrawUpdate()
 			{
 			    PlayerInfo[i][pRank] = 11;
 			}
-			format(string, sizeof(string), "Rank:~w~ %s", GetRankName(i));
+			format(string, sizeof(string), "Rango:~w~ %s", GetRankName(i));
 			TextDrawSetString(Rank[i], string);
 			TextDrawShowForPlayer(i, Rank[i]);
 			format(string, sizeof(string), "EXP:~w~ %d", PlayerInfo[i][pScore]);
 			TextDrawSetString(EXP[i], string);
 			TextDrawShowForPlayer(i, EXP[i]);
-			format(string, sizeof(string), "Kills:~w~ %d", PlayerInfo[i][pKills]);
+			format(string, sizeof(string), "Asesinatos:~w~ %d", PlayerInfo[i][pKills]);
 			TextDrawSetString(Kills[i], string);
             TextDrawShowForPlayer(i, Kills[i]);
-			format(string, sizeof(string), "Deaths:~w~ %d", PlayerInfo[i][pDeaths]);
+			format(string, sizeof(string), "Muertes:~w~ %d", PlayerInfo[i][pDeaths]);
 			TextDrawSetString(Deaths[i], string);
 			TextDrawShowForPlayer(i, Deaths[i]);
             TotalZones();
-			format(string, sizeof(string), "Zones:~w~ %d/%d", OwnedZones[gTeam[i]-1], MAX_ZONES);
+			format(string, sizeof(string), "Zonas:~w~ %d/%d", OwnedZones[gTeam[i]-1], MAX_ZONES);
 			TextDrawSetString(Zones[i], string);
 			TextDrawShowForPlayer(i, Zones[i]);
 			
@@ -3394,7 +3394,7 @@ CMD:a(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], text[128];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"s[128]", text)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /a [message]");
 		format(string, sizeof(string), "{FFD700}ADMIN CHAT:{9C9C8A} %s: %s", GetName(playerid), text);
 		MessageToAdmins(yellow, string);
@@ -3407,7 +3407,7 @@ CMD:check(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid;
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /check [playerid]");
         if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
         ShowStatsForPlayer(targetid, playerid);
@@ -3419,7 +3419,7 @@ CMD:spec(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], targetid;
-	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /spec [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		TogglePlayerSpectating(playerid, 1);
@@ -3443,7 +3443,7 @@ CMD:endspec(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		TogglePlayerSpectating(playerid, 0);
 	}
 	return 1;
@@ -3454,7 +3454,7 @@ CMD:kick(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128], targetid, reason[128];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /kick [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can't kick higher ranked Administrators.");
@@ -3470,7 +3470,7 @@ CMD:goto(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, string[128];
-	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /goto [playerid]");
 	    else if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 	    else
@@ -3492,7 +3492,7 @@ CMD:forcerules(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new targetid, string[128], rules[1024];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /forcerules [playerid]");
   		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		strcat(rules, "{00FF22}Rule 1:{FFFFFF} Hacking or using any kind of mods which give you advantage is NOT allowed.\n", sizeof(rules));
@@ -3516,7 +3516,7 @@ CMD:forcerules(playerid, params[])
 CMD:setint(playerid, params[])
 {
 	new targetid, int, string[128];
-	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
     if(sscanf(params, "ud", targetid, int)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setint [playerid] [interiorid]");
     if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
     else
@@ -3534,7 +3534,7 @@ CMD:setint(playerid, params[])
 CMD:setvw(playerid, params[])
 {
 	new targetid, vw, string[128];
-	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
     if(sscanf(params, "ud", targetid, vw)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setvw [playerid] [world id]");
     if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
     else
@@ -3554,7 +3554,7 @@ CMD:freeze(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /freeze [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
 		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has froze %s.", GetName(playerid), GetName(targetid));
@@ -3571,7 +3571,7 @@ CMD:unfreeze(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unfreeze [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
 		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has unfroze %s.", GetName(playerid), GetName(targetid));
@@ -3588,7 +3588,7 @@ CMD:clearcheck(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /clearcheck [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
         format(string, sizeof(string), "AdmWarn:{FFFFFF} Administrator %s has cleared %s's Anti Airbrake check.", GetName(playerid), GetName(targetid));
@@ -3610,7 +3610,7 @@ CMD:gethere(playerid,params[])
 	{
 		new targetid, string[128];
 	    new Float:x, Float:y, Float:z;
-	    if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /gethere [playerid]");
 	    else if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		else
@@ -3631,7 +3631,7 @@ CMD:slap(playerid, params[])
     if(Logged[playerid] == 1)
 	{
 		new targetid, Float:x, Float:y, Float:z, str[126];
-		if(PlayerInfo[playerid][pAdmin] < 2 ) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command." );
+		if(PlayerInfo[playerid][pAdmin] < 2 ) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando." );
 	   	if(sscanf(params,"d", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /slap [playerid]");
 	   	if(IsPlayerConnected(targetid))
 	   	{
@@ -3652,7 +3652,7 @@ CMD:ban(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128], targetid, reason[60];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[60]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /ban [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is a higher ranked Administrator.");
@@ -3676,7 +3676,7 @@ CMD:banip(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "s[16]", IP[playerid])) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /banip [IP]");
         format(string, sizeof(string), "banip %s", IP[playerid]);
 		SendRconCommand(string);
@@ -3695,7 +3695,7 @@ CMD:giveexp(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /giveexp [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		PlayerInfo[targetid][pScore] += amount;
@@ -3711,7 +3711,7 @@ CMD:warn(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128], targetid, reason[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /warn [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is higher ranked Administrator than you.");
@@ -3741,7 +3741,7 @@ CMD:ann(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new text[60];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "s[60]", text)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /ann [message]");
 		GameTextForAll(text, 3000, 3);
 	}
@@ -3750,7 +3750,7 @@ CMD:ann(playerid, params[])
 
 CMD:fixveh(playerid, params[])
 {
-	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	if(IsPlayerInAnyVehicle(playerid))
 	{
  		RepairVehicle(GetPlayerVehicleID(playerid));
@@ -3765,7 +3765,7 @@ CMD:cc(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		ClearChat();
 		SendClientMessageToAll(yellow, "SERVER:{FFFFFF} Chat has been cleared by an Administrator");
 		format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has cleared the chat.", GetName(playerid));
@@ -3784,7 +3784,7 @@ CMD:setexp(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setexp [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		PlayerInfo[targetid][pScore] = amount;
@@ -3802,7 +3802,7 @@ CMD:unwarn(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128], targetid, reason[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unwarn [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is higher ranked Administrator than you.");
@@ -3820,7 +3820,7 @@ CMD:sethealth(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], targetid, amount;
-	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /sethealth [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 	    SetPlayerHealth(targetid, amount);
@@ -3837,7 +3837,7 @@ CMD:setarmour(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], targetid, amount;
-	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setarmour [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 	    SetPlayerArmour(targetid, amount);
@@ -3854,7 +3854,7 @@ CMD:setkills(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setkills [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		PlayerInfo[targetid][pKills] = amount;
@@ -3871,7 +3871,7 @@ CMD:setdeaths(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setdeaths [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		PlayerInfo[targetid][pDeaths] = amount;
@@ -3893,7 +3893,7 @@ CMD:unban(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new query[128], account[30];
-	    if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "s[30]", account)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unban [AccountName]");
         format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s' AND `Banned` = 1", account);
 		mysql_tquery(mysql, query, "BanResults", "ii", playerid, account);
@@ -3906,7 +3906,7 @@ CMD:unbanip(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128];
-		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "s[16]", IP[playerid])) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unbanip [IP]");
         format(string, sizeof(string), "unbanip %s", IP[playerid]);
 		SendRconCommand(string);
@@ -3925,7 +3925,7 @@ CMD:blowup(playerid, params[])
     if(Logged[playerid] == 1)
 	{
         new targetid, Float:x, Float:y, Float:z, str[126];
-		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	 	if(sscanf(params,"d", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /blowup [playerid]");
 	  	if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		else
@@ -3945,7 +3945,7 @@ CMD:blowup(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new targetid, string[128], name[28], exists[64];
-		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[128]", targetid, name)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /changename [playerid] [name]");
   		format(exists, sizeof(exists), "/CSW/Users/%s.ini", name);
 		if(fexist(exists)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That name is already taken.");
@@ -3975,7 +3975,7 @@ CMD:makeadmin(playerid, params[])
     if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /makeadmin [playerid] [adminrank]");
 	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(amount > 5) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 0-5.");
@@ -3999,7 +3999,7 @@ CMD:makeleader(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new targetid, amount, string[128];
-	    if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /makeleader [playerid] [clanid]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
         if(PlayerInfo[targetid][pClan] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is already a member of a clan.");
@@ -4035,7 +4035,7 @@ CMD:makevip(playerid, params[])
     if(Logged[playerid] == 1)
 	{
 		new targetid, amount, string[128];
-		if(PlayerInfo[playerid][pAdmin] < 1337) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command!");
+		if(PlayerInfo[playerid][pAdmin] < 1337) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /makevip [playerid] [viprank]");
 	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 		if(amount > 4) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 1-4.");
@@ -4079,7 +4079,7 @@ CMD:veh(playerid, params[])
 CMD:tod(playerid, params[])
 {
 	new amount;
-	if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
     else if(sscanf(params, "i", amount)) return SendClientMessage(playerid, COLOR_GREY,"USAGE:{FFFFFF} /tod [Hour]");
     else
     {
