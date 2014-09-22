@@ -1646,61 +1646,61 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 1;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Brass Knuckles.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Brass Knuckles.");
 				}
 				case 1:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 2;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Golf Club.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Golf Club.");
 				}
 				case 2:
 				{
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 3;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Nightstick.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Nightstick.");
 				}
 				case 3:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 4;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Knife.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Knife.");
 				}
 				case 4:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 5;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Baseball Bat.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Baseball Bat.");
 				}
 				case 5:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 6;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Shovel.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Shovel.");
 				}
 				case 6:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 7;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Pool Cue.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Pool Cue.");
 				}
 				case 7:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 8;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Katana.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Katana.");
 				}
 				case 8:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 14;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Flowers.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Flowers.");
 				}
 				case 9:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1] = 15;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's melee weapon to Cane.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma cuerpo a cuerpo de tu clan a Cane.");
 				}
 			}
 		}
@@ -1716,19 +1716,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep2] = 22;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's pistol weapon to Colt 45.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito la pistola de tu clan a Colt 45.");
 				}
 				case 1:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep2] = 23;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's pistol weapon to Silenced 9mm.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito la pistola de tu clan a Silenced 9mm.");
 				}
 				case 2:
 				{
 				    ClanInfo[PlayerInfo[playerid][pClan]-1][cWep2] = 24;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's pistol weapon to Desert Eagle.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito la pistola de tu clan a Desert Eagle.");
 				}
 			}
 		}
@@ -1744,37 +1744,37 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 25;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to Shotgun.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a Shotgun.");
 				}
 				case 1:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 26;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to Sawnoff Shotgun.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a Sawnoff Shotgun.");
 				}
 				case 2:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 27;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to Combat Shotgun.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a Combat Shotgun.");
 				}
 				case 3:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 28;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to Uzi.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a Uzi.");
 				}
 				case 4:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 29;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to MP5.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a MP5.");
 				}
 				case 5:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3] = 32;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 3 to Tec-9.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 3 de tu clan a Tec-9.");
 				}
 			}
 		}
@@ -1790,25 +1790,25 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4] = 30;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 4 to AK-47.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 4 de tu clan a AK-47.");
 				}
 				case 1:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4] = 31;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 4 to M4.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 4 de tu clan a M4.");
 				}
 				case 2:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4] = 33;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 4 to Country Rifle.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 4 de tu clan a Country Rifle.");
 				}
 				case 3:
 	            {
 					ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4] = 34;
 					SaveClan(PlayerInfo[playerid][pClan]-1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your clan's weapon 4 to Sniper Rifle.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has cambiado con éxito el arma 4 de tu clan a Sniper Rifle.");
 				}
 			}
 		}
@@ -1826,7 +1826,7 @@ public OnPlayerModelSelection(playerid, response, listid, modelid)
 			ClanInfo[PlayerInfo[playerid][pClan]-1][cSkin] = modelid;
 			SaveClan(PlayerInfo[playerid][pClan]-1);
         }
-        else SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Skin selection canceled.");
+        else SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Selección de skin cancelada.");
         return 1;
     }
     return 1;
@@ -2951,7 +2951,7 @@ public RandomMessages()
 public AntiSpawnKill(playerid)
 {
 	SetPlayerHealth(playerid, 100.0);
-	SendClientMessage(playerid, orange, "ANTI SPAWN KILL:{FFFFFF} Anti Spawn Kill protection over!");
+	SendClientMessage(playerid, orange, "ANTI SPAWN KILL:{FFFFFF} ¡Se ha terminado la Anti Spawn Kill!");
 }
 
 public OnLookupComplete(playerid)
