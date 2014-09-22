@@ -621,7 +621,7 @@ public OnPlayerConnect(playerid)
 	
     
 	SetPlayerColor(playerid, 0xAFAFAFAA);
- 	GameTextForPlayer(playerid, "~w~Loading... Please wait.", 3000, 3);
+ 	GameTextForPlayer(playerid, "~w~Cargando... Por favor espera.", 3000, 3);
     SetTimerEx("LoggingTimer", 3000, false, "i", playerid);
 	SetPlayerPos(playerid, -2914.0830,499.6014,13.3667);
 	SetPlayerVirtualWorld(playerid, 1);
@@ -652,8 +652,8 @@ public OnPlayerSpawn(playerid)
 	ResetPlayerWeapons(playerid);
 	Spawned[playerid] = 1;
 	SetPlayerHealth(playerid, 10000.0);
-	SendClientMessage(playerid, orange, "ANTI SPAWN KILL:{FFFFFF} You have 5 seconds of Anti Spawn Kill protection.");
-    SetPlayerChatBubble(playerid, "Anti Spawn Kill Protected", COLOR_RED, 100.0, 5000);
+	SendClientMessage(playerid, orange, "ANTI SPAWN KILL:{FFFFFF} Tienes 5 segundos de protección Anti Spawn Kill.");
+    SetPlayerChatBubble(playerid, "Protección Anti Spawn Kill", COLOR_RED, 100.0, 5000);
     SetTimerEx("AntiSpawnKill", 5000, false, "i", playerid);
 	if(PlayerInfo[playerid][pClan] != 0)
 	{
@@ -1027,11 +1027,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
       	{
 			if(response)
 			{
-   				if(strlen(inputtext) < 5) return ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "CSW", "{F81414}ERROR:{FFFFFF} Your password must have at least 5 characters!\nType in your desired password below to register.", "Register", "Quit");
+   				if(strlen(inputtext) < 5) return ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "CSW", "{F81414}ERROR:{FFFFFF} La contraseña debe tener mínimo cinco caracteres.\nEscribe tu contraseña deseada para registrarte.", "Register", "Quit");
 	     		WP_Hash(PlayerInfo[playerid][pPass], 129, inputtext);
 	     		mysql_format(mysql, query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `IP`, `Money`, `Admin`, `Vip`, `Kills` ,`Deaths`, `Score`, `Rank`, `Banned`, `Warns`, `VW`, `Interior`, `Min`, `Hours`, `PM`, `Color`, `Turfs`, `Clan`, `ClRank`, `ClLeader`, `Invited`, `Inviting`  ) VALUES ('%e', '%s', '%s', 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)", Name[playerid], PlayerInfo[playerid][pPass], IP[playerid]);
 	     		mysql_tquery(mysql, query, "OnAccountRegister", "i", playerid);
-				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Success!", "{FFFFFF}Successfully registered!\nType in your password below to login.", "Login", "Quit");
+				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Success!", "{FFFFFF}¡Registrado con éxito!\nEscribe tu contraseña para entrar.", "Login", "Quit");
 			}
 		}
     }
