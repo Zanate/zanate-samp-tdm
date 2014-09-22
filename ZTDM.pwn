@@ -4558,15 +4558,15 @@ CMD:crank(playerid, params[])
 	    new targetid, rank, string[128];
 	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "ud", targetid, rank)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /crank [playerid] [rank]");
-	    if(playerid == targetid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Want to change your own rank? How about no.");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-		if(PlayerInfo[playerid][pClan] != PlayerInfo[targetid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't in your clan.");
-		if(PlayerInfo[playerid][pClRank] <= PlayerInfo[targetid][pClRank]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is same or higher rank than you.");
+	    if(sscanf(params, "ud", targetid, rank)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /crank [playerid] [rank]");
+	    if(playerid == targetid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No puedes cambiar tu propio rango.");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
+		if(PlayerInfo[playerid][pClan] != PlayerInfo[targetid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en tu clan.");
+		if(PlayerInfo[playerid][pClRank] <= PlayerInfo[targetid][pClRank]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador tiene el mismo o más alto rango que el tuyo.");
 	    PlayerInfo[targetid][pClRank] = rank;
-	    format(string, sizeof(string), "INFO:{FFFFFF} You have succesfully set %s's rank to %d.", GetName(targetid), rank);
+	    format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el rango de %s a %d.", GetName(targetid), rank);
 	    SendClientMessage(playerid, COLOR_GREY, string);
-	    format(string, sizeof(string), "CLAN:{FFFFFF} %s has set your rank to %d.", GetName(playerid), rank);
+	    format(string, sizeof(string), "CLAN:{FFFFFF} %s ha cambiado tu rango a %d.", GetName(playerid), rank);
 	    SendClientMessage(playerid, greenyellow, string);
 	}
 	return 1;
@@ -4585,8 +4585,8 @@ CMD:cquit(playerid, params[])
    			PlayerInfo[playerid][pClan] = 0;
    			PlayerInfo[playerid][pClLeader] = 0;
             SaveClan(PlayerInfo[playerid][pClan]-1);
-   			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully quit your clan.");
-			format(string, sizeof(string), "CL-QUIT:{FFFFFF} %s has quit the clan.", GetName(playerid));
+   			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has dejado con éxito el clan.");
+			format(string, sizeof(string), "CL-QUIT:{FFFFFF} %s ha dejado el clan.", GetName(playerid));
 			SendClanMessage(playerid, greenyellow, string);
 		}
    		else
@@ -4594,8 +4594,8 @@ CMD:cquit(playerid, params[])
             ClanInfo[PlayerInfo[playerid][pClan]-1][cMembers]--;
 			PlayerInfo[playerid][pClan] = 0;
 			SaveClan(PlayerInfo[playerid][pClan]-1);
-		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully quit your clan.");
-            format(string, sizeof(string), "CL-QUIT:{FFFFFF} %s has quit the clan.", GetName(playerid));
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has dejado con éxito el clan.");
+            format(string, sizeof(string), "CL-QUIT:{FFFFFF} %s ha dejado el clan.", GetName(playerid));
 			SendClanMessage(playerid, greenyellow, string);
 		}
 	}
@@ -4609,8 +4609,8 @@ CMD:c(playerid, params[])
 		new string[128], message[128];
 		if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "s[128]", message)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /c [message]");
-        if(strlen(message) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too short.");
-	    if(strlen(message) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too long.");
+        if(strlen(message) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El mensaje es muy corto.");
+	    if(strlen(message) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El mensaje es muy largo.");
 		format(string, sizeof(string), "CL-CHAT:{FFFFFF} %s: %s", GetName(playerid), message);
 		SendClanMessage(playerid, greenyellow, string);
 	}
@@ -4644,12 +4644,12 @@ CMD:cinvite(playerid, params[])
 	    new string[128], targetid;
 	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /cinvite [playerid]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /cinvite [playerid]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
 	    PlayerInfo[targetid][pInvited] = PlayerInfo[playerid][pClan];
-	    format(string, sizeof(string), "CL-INVITE:{FFFFFF} You have been invited to join clan ID %d by %s, type /caccept to accept.", PlayerInfo[playerid][pClan], GetName(playerid));
+	    format(string, sizeof(string), "CL-INVITE:{FFFFFF} Has sido invitado a entrar al clan ID %d por %s, escribe /caccept para aceptar.", PlayerInfo[playerid][pClan], GetName(playerid));
 	    SendClientMessage(targetid, greenyellow, string);
-	    format(string, sizeof(string), "INFO:{FFFFFF} You have successfully invited %s to join your clan.", GetName(targetid));
+	    format(string, sizeof(string), "INFO:{FFFFFF} Has invitado con éxito a %s a tu clann.", GetName(targetid));
 	    SendClientMessage(playerid, COLOR_GREY, string);
 	}
 	return 1;
@@ -4662,19 +4662,19 @@ CMD:ckick(playerid, params[])
 	    new string[128], targetid;
 	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /ckick [playerid]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-	    if(PlayerInfo[playerid][pClan] != PlayerInfo[targetid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't a member of your clan.");
-        if(PlayerInfo[targetid][pClan] > PlayerInfo[playerid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is higher ranked than you.");
+	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /ckick [playerid]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
+	    if(PlayerInfo[playerid][pClan] != PlayerInfo[targetid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador tiene el mismo o más alto rango que el tuyo.");
+        if(PlayerInfo[targetid][pClan] > PlayerInfo[playerid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador tiene un rango más alto.");
 		PlayerInfo[targetid][pClan] = 0;
 		PlayerInfo[targetid][pClRank] = 0;
 		ClanInfo[PlayerInfo[playerid][pClan]-1][cMembers]--;
 		SaveClan(PlayerInfo[playerid][pClan]-1);
-		format(string, sizeof(string), "CL-KICK:{FFFFFF} %s has kicked %s out of the clan.", GetName(playerid), GetName(targetid));
+		format(string, sizeof(string), "CL-KICK:{FFFFFF} %s ha eliminado a %s del clan.", GetName(playerid), GetName(targetid));
 		SendClanMessage(playerid, greenyellow, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} You have been kicked out of the clan by %s.", GetName(playerid));
+		format(string, sizeof(string), "INFO:{FFFFFF} Has sido eliminado del clan por %s.", GetName(playerid));
 		SendClientMessage(playerid, COLOR_GREY, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} You have successfully kicked %s out of the clan.", GetName(targetid));
+		format(string, sizeof(string), "INFO:{FFFFFF} Has eliminado con éxito a %s del clan.", GetName(targetid));
 		SendClientMessage(playerid, COLOR_GREY, string);
 	}
 	return 1;
@@ -4690,9 +4690,9 @@ CMD:caccept(playerid, params[])
 		PlayerInfo[playerid][pClan] = PlayerInfo[playerid][pInvited];
 		PlayerInfo[playerid][pClRank] = 1;
 		ClanInfo[PlayerInfo[playerid][pInvited]-1][cMembers]++;
-		format(string, sizeof(string), "INFO:{FFFFFF} You have accepted the invitation to clan ID %d.", PlayerInfo[playerid][pInvited]);
+		format(string, sizeof(string), "INFO:{FFFFFF} Has aceptado la invitación al clan ID %d.", PlayerInfo[playerid][pInvited]);
 		SendClientMessage(playerid, COLOR_GREY, string);
-		format(string, sizeof(string), "CL-MSG:{FFFFFF} %s has joined the clan.", GetName(playerid));
+		format(string, sizeof(string), "CL-MSG:{FFFFFF} %s se ha unido al clan.", GetName(playerid));
 		SendClanMessage(playerid, greenyellow, string);
 		PlayerInfo[playerid][pInvited] = 0;
 	}
@@ -4720,7 +4720,7 @@ CMD:piss(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		SetPlayerSpecialAction(playerid, 68);
-		SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Type /stopanim to stop the animation.");
+		SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Escribe /stopanim para detener la animación.");
 	}
 	return 1;
 }
@@ -4730,7 +4730,7 @@ CMD:wank(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    ApplyAnimation(playerid, "PAULNMAC", "wank_loop", 4.0, 1, 0, 0, 1, 0, 1);
-        SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Type /stopanim to stop the animation.");
+        SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Escribe /stopanim para detener la animación.");
 	}
 	return 1;
 }
@@ -4740,7 +4740,7 @@ CMD:wave(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    ApplyAnimation(playerid, "ON_LOOKERS", "wave_loop", 4.0, 1, 0, 0, 1, 0, 1);
-	    SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Type /stopanim to stop the animation.");
+	    SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Escribe /stopanim para detener la animación.");
 	}
 	return 1;
 }
@@ -4750,7 +4750,7 @@ CMD:stopanim(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    ClearAnimations(playerid);
-	    SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Animation stopped.");
+	    SendClientMessage(playerid, orange, "ANIM:{FFFFFF} Animación detenida.");
 	}
 	return 1;
 }
@@ -4760,20 +4760,20 @@ CMD:givemoney(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new targetid, amount, string[128];
-	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /givemoney [playerid] [amount]");
-		else if(amount < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Amount can't be less than 1.");
-		else if(PlayerInfo[playerid][pMoney] < amount) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have that much money.");
-	    else if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-		else if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Giving money to yourself? How about no?");
+	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /givemoney [playerid] [amount]");
+		else if(amount < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El monto no puede ser menor a 1.");
+		else if(PlayerInfo[playerid][pMoney] < amount) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes esa cantidad de dinero.");
+	    else if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
+		else if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No te puedes dar dinero a ti mismo.");
 		else
 	    {
 			GivePlayerMoney(playerid, -amount);
 			PlayerInfo[playerid][pMoney] -= amount;
 			GivePlayerMoney(targetid, amount);
 			PlayerInfo[targetid][pMoney] += amount;
-			format(string, sizeof(string), "INFO:{FFFFFF} You gave %s %d$.", GetName(targetid), amount);
+			format(string, sizeof(string), "INFO:{FFFFFF} Le diste a %s, $%d.", GetName(targetid), amount);
 			SendClientMessage(playerid, COLOR_GREY, string);
-			format(string, sizeof(string), "INFO:{FFFFFF} %s has gave you %d$.", GetName(playerid), amount);
+			format(string, sizeof(string), "INFO:{FFFFFF} %s te ha dado $%d.", GetName(playerid), amount);
 			SendClientMessage(targetid, COLOR_GREY, string);
 		}
 	}
