@@ -3785,8 +3785,8 @@ CMD:setexp(playerid, params[])
 	{
 		new targetid, amount, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setexp [playerid] [amount]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setexp [playerid] [amount]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pScore] = amount;
 		SetPlayerScore(targetid, amount);
 		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your EXP points to %d.", GetName(playerid), amount);
@@ -3803,9 +3803,9 @@ CMD:unwarn(playerid, params[])
 	{
 		new string[128], targetid, reason[128];
 		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unwarn [playerid] [reason]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is higher ranked Administrator than you.");
+		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /unwarn [playerid] [reason]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
+		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador es un administrador con más rango.");
         PlayerInfo[targetid][pWarns]--;
 		format(string, sizeof(string), "WARN:{FFFFFF} Administrator %s has unwarned %s (%d/3)", GetName(playerid), GetName(targetid), PlayerInfo[targetid][pWarns]);
 		SendClientMessageToAll(COLOR_RED, string);
@@ -3821,8 +3821,8 @@ CMD:sethealth(playerid, params[])
 	{
 	    new string[128], targetid, amount;
 	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /sethealth [playerid] [amount]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /sethealth [playerid] [amount]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 	    SetPlayerHealth(targetid, amount);
 	    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's health to %d.", GetName(targetid), amount);
 	    SendClientMessage(playerid, COLOR_RED, string);
@@ -3839,7 +3839,7 @@ CMD:setarmour(playerid, params[])
 	    new string[128], targetid, amount;
 	    if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setarmour [playerid] [amount]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 	    SetPlayerArmour(targetid, amount);
 	    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's armour to %d.", GetName(targetid), amount);
 	    SendClientMessage(playerid, COLOR_RED, string);
@@ -3856,7 +3856,7 @@ CMD:setkills(playerid, params[])
 		new targetid, amount, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setkills [playerid] [amount]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pKills] = amount;
 		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your kills to %d.", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
@@ -3873,7 +3873,7 @@ CMD:setdeaths(playerid, params[])
 		new targetid, amount, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setdeaths [playerid] [amount]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pDeaths] = amount;
 		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your deaths to %d.", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
@@ -3927,7 +3927,7 @@ CMD:blowup(playerid, params[])
         new targetid, Float:x, Float:y, Float:z, str[126];
 		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	 	if(sscanf(params,"d", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /blowup [playerid]");
-	  	if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	  	if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		else
 		{
 	    	GetPlayerPos(targetid, x, y, z);
@@ -3977,7 +3977,7 @@ CMD:makeadmin(playerid, params[])
 		new targetid, amount, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /makeadmin [playerid] [adminrank]");
-	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		if(amount > 5) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 0-5.");
 		if(amount < 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Invalid Administrator Level.");
 	    else
@@ -4000,8 +4000,8 @@ CMD:makeleader(playerid, params[])
 	{
 	    new targetid, amount, string[128];
 	    if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /makeleader [playerid] [clanid]");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /makeleader [playerid] [clanid]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
         if(PlayerInfo[targetid][pClan] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is already a member of a clan.");
 		if(PlayerInfo[targetid][pClLeader] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is already a leader of a clan.");
 		if(amount > 6) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 1-6.");
