@@ -4037,17 +4037,17 @@ CMD:makevip(playerid, params[])
 		new targetid, amount, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 1337) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /makevip [playerid] [viprank]");
-	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
-		if(amount > 4) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 1-4.");
-		if(amount < 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Invalid VIP Level.");
+	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
+		if(amount > 4) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Solo puedes escoger entre 1-4.");
+		if(amount < 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Nivel de VIP inválido.");
 	    else
 		{
-			format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has set %s's VIP level to %d.", GetName(playerid), GetName(targetid), amount);
+			format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha cambiado el nivel de VIP de %s a %d.", GetName(playerid), GetName(targetid), amount);
 			MessageToAdmins(COLOR_RED, string);
 			PlayerInfo[targetid][pVip] = amount;
-		    format(string, sizeof(string), "INFO:{FFFFFF} %s has set your VIP to level %d.", GetName(playerid), amount);
+		    format(string, sizeof(string), "INFO:{FFFFFF} %s ha cambiado tu nivel de VIP a %d.", GetName(playerid), amount);
 			SendClientMessage(targetid, COLOR_GREY, string);
-			format(string, sizeof(string), "MAKE-VIP: %s has made %s a level %i VIP.", GetName(playerid), GetName(targetid), amount);
+			format(string, sizeof(string), "MAKE-VIP: %s ha hecho a %s nivel %i de VIP.", GetName(playerid), GetName(targetid), amount);
 			Log("/ZTDM/Logs/vip.txt", string);
 		}
 	}
@@ -4072,7 +4072,7 @@ CMD:veh(playerid, params[])
        	}
         else SendClientMessage(playerid, -1, "USAGE: /veh [carid] [color 1] [color 2]");
    	}
-    else SendClientMessage(playerid, -1, "Only Administrators are allowed to use this command!");
+    else SendClientMessage(playerid, -1, "Solo los administradores pueden usar este comando.");
    	return 1;
 }
 
@@ -4084,7 +4084,7 @@ CMD:tod(playerid, params[])
     else
     {
     	SetWorldTime(amount);
-		SendClientMessage(playerid,COLOR_GREY,"INFO:{FFFFFF} Time has been sucesfully changed");
+		SendClientMessage(playerid,COLOR_GREY,"INFO:{FFFFFF} El tiempo ha sido cambiado con éxito.");
 	}
 	return 1;
 }
@@ -4166,20 +4166,20 @@ CMD:cmds(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new cmds[1024];
-	    strcat(cmds, "{00FF22}/help{FFFFFF} - Opens the help dialog.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/rules{FFFFFF} - Opens the rules dialog.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/ranks{FFFFFF} - Opens the ranks dialog.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/credits{FFFFFF} - Opens the credits dialog.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/shop{FFFFFF} - Opens the shop menu.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/stats{FFFFFF} - Opens the stats dialog.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/updates{FFFFFF} - Opens the updates dialog.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/pm{FFFFFF} - Sends a private message to a player.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/report{FFFFFF} - Sends a report to online Administrators.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/radio{FFFFFF} - Opens the radio dialog.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/radiooff{FFFFFF} - Stops your current radio stream.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/admins{FFFFFF} - Shows online admins.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/tc{FFFFFF} - Sends a message to your team.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/clans{FFFFFF} - Shows a list of the official clans.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/help{FFFFFF} - Abre el diálogo de ayuda.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/rules{FFFFFF} - Abre el diálogo de reglas.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/ranks{FFFFFF} - Abre el diálogo de rangos.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/credits{FFFFFF} - Abre los créditos.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/shop{FFFFFF} - Abre el menú de la tienda.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/stats{FFFFFF} - Abre el diálogo de stats.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/updates{FFFFFF} - Abre el diálogo de actualizaciones.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/pm{FFFFFF} - Envía un mensaje privado a un jugador.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/report{FFFFFF} - Envía un reporte a un administrador.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/radio{FFFFFF} - Abre el diálogo de la radio.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/radiooff{FFFFFF} - Detiene la radio.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/admins{FFFFFF} - Muestra a los administradores en línea.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/tc{FFFFFF} - Envía un mensaje a tu team.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/clans{FFFFFF} - Muestra la lista de clans oficiales.\n", sizeof(cmds));
 		ShowPlayerDialog(playerid, DIALOG_CMDS, DIALOG_STYLE_MSGBOX, "Commands", cmds, "Okay", "");
     }
     return 1;
@@ -4190,14 +4190,14 @@ CMD:ccmds(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new cmds[1024];
-		if(PlayerInfo[playerid][pClan] == 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
-		strcat(cmds, "{00FF22}/cmembers{FFFFFF} - Shows all online Clan members.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/c{FFFFFF} - Sends a message to other online clan members.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/cquit{FFFFFF} - Quits your current clan.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/crank{FFFFFF} - Sets player's clan rank.\n", sizeof(cmds));
-	    strcat(cmds, "{00FF22}/cedit{FFFFFF} - Opens the Clan Edit dialog.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/cinvite{FFFFFF} - Invites a member to the clan.\n", sizeof(cmds));
-		strcat(cmds, "{00FF22}/ckick{FFFFFF} - Kicks a player out of the clan.\n", sizeof(cmds));
+		if(PlayerInfo[playerid][pClan] == 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+		strcat(cmds, "{00FF22}/cmembers{FFFFFF} - Muestra los miembros en línea del clan.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/c{FFFFFF} - Envía un mensaje a los miembros en línea del clan.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/cquit{FFFFFF} - Abandona tu clan actual.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/crank{FFFFFF} - Modifica el rango de clan de un jugador.\n", sizeof(cmds));
+	    strcat(cmds, "{00FF22}/cedit{FFFFFF} - Abre el diálogo de edición de clan.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/cinvite{FFFFFF} - Invita un miembro al clan.\n", sizeof(cmds));
+		strcat(cmds, "{00FF22}/ckick{FFFFFF} - Elimina a un jugador del clan.\n", sizeof(cmds));
 		ShowPlayerDialog(playerid, DIALOG_CCMDS, DIALOG_STYLE_MSGBOX, "Clan Commands", cmds, "Okay", "");
     }
     return 1;
@@ -4254,7 +4254,7 @@ CMD:shop(playerid, params[])
 			}
 			else
 			{
-			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} This shop belongs to Grove Street and can only be used by them.");
+			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Esta tienda pertenece a los Groove Street y solo puede ser usada por ellos..");
 			}
 		}
 		else if(IsPlayerInRangeOfPoint(playerid, 2, 1872.0562, -2011.1937, 13.5469))
@@ -4265,7 +4265,7 @@ CMD:shop(playerid, params[])
 			}
 			else
 			{
-			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} This shop belongs to Aztecas and can only be used by them.");
+			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Esta tienda pertenece a los Aztecas y solo puede ser usada por ellos.");
 			}
 		}
 		else if(IsPlayerInRangeOfPoint(playerid, 2, 2233.0354, -1180.0729, 25.8972))
@@ -4276,7 +4276,7 @@ CMD:shop(playerid, params[])
 			}
 			else
 			{
-			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} This shop belongs to Ballas and can only be used by them.");
+			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Esta tienda pertenece a los Ballas y solo puede ser usada por ellos.");
 			}
 		}
 		else if(IsPlayerInRangeOfPoint(playerid, 2, 2808.0178, -1190.5220, 25.3437))
@@ -4287,7 +4287,7 @@ CMD:shop(playerid, params[])
 			}
 			else
 			{
-			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} This shop belongs to Vagos and can only be used by them.");
+			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Esta tienda pertenece a los Vagos y solo puede ser usada por ellos.");
 			}
 		}
 		else if(IsPlayerInRangeOfPoint(playerid, 2, 1550.8929, -1669.9216, 13.5615))
@@ -4298,12 +4298,12 @@ CMD:shop(playerid, params[])
 			}
 			else
 			{
-			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} This shop belongs to Police and can only be used by them.");
+			    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Esta tienda pertenece a la Policía y solo puede ser usada por ellos.");
 			}
 		}
 		else
 		{
-		    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can't use that command here.");
+		    SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No puedes usar ese comando aquí.");
 		}
 	}
 	return 1;
@@ -4313,7 +4313,7 @@ CMD:acmds(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(PlayerInfo[playerid][pAdmin] >= 1)
 		{
 			ShowPlayerDialog(playerid, DIALOG_ACMDS, DIALOG_STYLE_LIST, "Admin Commands", "Level 1", "Select", "Cancel");
@@ -4385,12 +4385,12 @@ CMD:pm(playerid, params[])
 	{
 		new targetid, message[128], string[128];
 	    if(sscanf(params,"us[128]", targetid, message)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /pm [playerid] [message]");
-	    if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} PMing yourself is rather idiotic so you can't do that here.");
-	    if(PlayerInfo[playerid][pPM] == 1) return SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have disabled PMs (/togpm to enable them).");
-	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is not online.");
-	    if(PlayerInfo[targetid][pPM] == 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player has disabled their PMs.");
-	    if(strlen(message) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too short.");
-	    if(strlen(message) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too long.");
+	    if(targetid == playerid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No puedes enviarte mensajes a ti mismo.");
+	    if(PlayerInfo[playerid][pPM] == 1) return SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has desactivado los mensajes privados (/togpm to enable them).");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
+	    if(PlayerInfo[targetid][pPM] == 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Este jugador ha desactivado los mensajes privados.");
+	    if(strlen(message) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El mensaje es muy corto.");
+	    if(strlen(message) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El mensaje es muy largo.");
 		format(string, sizeof(string), "PM from %s (ID: %d) to %s: %s", GetName(playerid), playerid, GetName(targetid), message);
 	    SendClientMessage(targetid, yellow, string);
 	    SendClientMessage(playerid, yellow, string);
@@ -4403,16 +4403,16 @@ CMD:togpm(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		else if(PlayerInfo[playerid][pPM] == 1)
 		{
 			PlayerInfo[playerid][pPM] = 0;
-			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have enabled your PMs.");
+			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has activado tus mensajes privados.");
 		}
 		else
 		{
 		    PlayerInfo[playerid][pPM] = 1;
-			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have disabled your PMs.");
+			SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has desactivado tus mensajes privados.");
 		}
 	}
 	return 1;
@@ -4422,12 +4422,12 @@ CMD:vnos(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-	    if(PlayerInfo[playerid][pVip] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
-	    else if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You need to be in an vehicle to use that command.");
+	    if(PlayerInfo[playerid][pVip] < 3) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando");
+	    else if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Necesitas estar en un vehículo para usar este comando.");
 	    else
 	    {
 	        AddVehicleComponent(GetPlayerVehicleID(playerid), 1010);
-	        SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully added NOS to your vehicle.");
+	        SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has agregado con éxito NOS a tu vehículo.");
 	    }
 	}
 	return 1;
@@ -4438,15 +4438,15 @@ CMD:report(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128], targetid, report[100];
-		if(sscanf(params,"us[128]", targetid, report)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /report [playerid] [report]");
-		if(strlen(report) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Report is too short.");
-		if(strlen(report) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Report is too long.");
-        if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params,"us[128]", targetid, report)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /report [playerid] [report]");
+		if(strlen(report) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El reporte es muy corto.");
+		if(strlen(report) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El reporte es muy largo..");
+        if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
 		format(string, sizeof(string), "REPORT:{FFFFFF} %s reported %s (%d)", GetName(playerid), GetName(targetid), targetid);
         MessageToAdmins(yellow, string);
 		format(string, sizeof(string), "REASON:{FFFFFF} %s", report);
 		MessageToAdmins(yellow, string);
-		SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Your report has been successfully sent to online Administrators.");
+		SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Tu reporte ha sido envíado con éxito a los administradores en línea.");
 	}
 	return 1;
 }
@@ -4475,7 +4475,7 @@ CMD:gmx(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-	    if(PlayerInfo[playerid][pAdmin] < 1338) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+	    if(PlayerInfo[playerid][pAdmin] < 1338) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    GMX();
 	    SendRconCommand("gmx");
 	}
@@ -4506,7 +4506,7 @@ CMD:vip(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You are not authorized to use that command.");
+		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(PlayerInfo[playerid][pVip] >= 1)
 		{
 		    ShowPlayerDialog(playerid, DIALOG_VIP, DIALOG_STYLE_LIST, "VIP Menu", "VIP Color\nToggle PMs", "Select", "Cancel");
@@ -4532,7 +4532,7 @@ CMD:vc(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], text[128];
-		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pVip] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"s[128]", text)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /vc [message]");
 		format(string, sizeof(string), "{FFD700}VIP CHAT:{9C9C8A} %s: %s", GetName(playerid), text);
 		MessageToVip(yellow, string);
@@ -4544,8 +4544,8 @@ CMD:cedit(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
-	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    ShowPlayerDialog(playerid, DIALOG_CLAN, DIALOG_STYLE_LIST, "Clan Editing", "Clan Name\nClan MOTD\nRank 1 Name\nRank 2 Name\nRank 3 Name\nRank 4 Name\nRank 5 Name\nRank 6 Name\nClan Skin\nMelee Weapon\nPistol Weapon\nWeapon 3\nWeapon 4", "Select", "Cancel");
 	}
 	return 1;
@@ -4556,8 +4556,8 @@ CMD:crank(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new targetid, rank, string[128];
-	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
-	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, rank)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /crank [playerid] [rank]");
 	    if(playerid == targetid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Want to change your own rank? How about no.");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
@@ -4577,7 +4577,7 @@ CMD:cquit(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128];
-	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(PlayerInfo[playerid][pClLeader] == 1)
 	    {
    			format(ClanInfo[PlayerInfo[playerid][pClan]-1][cLeader], 24, "Nobody");
@@ -4607,7 +4607,7 @@ CMD:c(playerid, params[])
     if(Logged[playerid] == 1)
 	{
 		new string[128], message[128];
-		if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "s[128]", message)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /c [message]");
         if(strlen(message) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too short.");
 	    if(strlen(message) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Message is too long.");
@@ -4622,7 +4622,7 @@ CMD:cmembers(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 		new string[128];
-		if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+		if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		SendClientMessage(playerid, yellow, "Online clan members:");
 		for(new i = 0; i < MAX_PLAYERS; i++)
     	{
@@ -4642,8 +4642,8 @@ CMD:cinvite(playerid, params[])
 	if(Logged[playerid] == 1)
 	{
 	    new string[128], targetid;
-	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
-	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /cinvite [playerid]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 	    PlayerInfo[targetid][pInvited] = PlayerInfo[playerid][pClan];
@@ -4660,8 +4660,8 @@ CMD:ckick(playerid, params[])
     if(Logged[playerid] == 1)
 	{
 	    new string[128], targetid;
-	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
-	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You aren't authorized to use that command.");
+	    if(PlayerInfo[playerid][pClan] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+	    if(PlayerInfo[playerid][pClRank] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /ckick [playerid]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
 	    if(PlayerInfo[playerid][pClan] != PlayerInfo[targetid][pClan]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't a member of your clan.");
