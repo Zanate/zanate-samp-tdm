@@ -3395,7 +3395,7 @@ CMD:a(playerid, params[])
 	{
 	    new string[128], text[128];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params,"s[128]", text)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /a [message]");
+		if(sscanf(params,"s[128]", text)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /a [message]");
 		format(string, sizeof(string), "{FFD700}ADMIN CHAT:{9C9C8A} %s: %s", GetName(playerid), text);
 		MessageToAdmins(yellow, string);
 	}
@@ -3408,8 +3408,8 @@ CMD:check(playerid, params[])
 	{
 		new targetid;
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /check [playerid]");
-        if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /check [playerid]");
+        if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
         ShowStatsForPlayer(targetid, playerid);
     }
     return 1;
@@ -3420,8 +3420,8 @@ CMD:spec(playerid, params[])
 	{
 	    new string[128], targetid;
 	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /spec [playerid]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params,"u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /spec [playerid]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		TogglePlayerSpectating(playerid, 1);
 		if(IsPlayerInAnyVehicle(targetid))
   		{
@@ -3455,8 +3455,8 @@ CMD:kick(playerid, params[])
 	{
 		new string[128], targetid, reason[128];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params,"us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /kick [playerid] [reason]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params,"us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /kick [playerid] [reason]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can't kick higher ranked Administrators.");
 		format(string, sizeof(string), "KICK:{FFFFFF} %s has been kicked by %s.", GetName(targetid), GetName(playerid));
 		SendClientMessageToAll(COLOR_RED, string);
@@ -3471,8 +3471,8 @@ CMD:goto(playerid, params[])
 	{
 		new targetid, string[128];
 	    if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /goto [playerid]");
-	    else if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /goto [playerid]");
+	    else if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 	    else
 	    {
 		    new Float:x, Float:y, Float:z;
@@ -3493,8 +3493,8 @@ CMD:forcerules(playerid, params[])
 	{
 	    new targetid, string[128], rules[1024];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /forcerules [playerid]");
-  		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /forcerules [playerid]");
+  		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		strcat(rules, "{00FF22}Rule 1:{FFFFFF} Hacking or using any kind of mods which give you advantage is NOT allowed.\n", sizeof(rules));
         strcat(rules, "{00FF22}Rule 2:{FFFFFF} Drive By with weapons such as Combat Shotgun and Deagle is NOT allowed.\n", sizeof(rules));
         strcat(rules, "{00FF22}Rule 3:{FFFFFF} Insulting other players as well as racism will not be tolerated.\n", sizeof(rules));
@@ -3517,8 +3517,8 @@ CMD:setint(playerid, params[])
 {
 	new targetid, int, string[128];
 	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-    if(sscanf(params, "ud", targetid, int)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setint [playerid] [interiorid]");
-    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
+    if(sscanf(params, "ud", targetid, int)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setint [playerid] [interiorid]");
+    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
     else
     {
         PlayerInfo[targetid][pInt] = int;
@@ -3535,8 +3535,8 @@ CMD:setvw(playerid, params[])
 {
 	new targetid, vw, string[128];
 	if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-    if(sscanf(params, "ud", targetid, vw)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /setvw [playerid] [world id]");
-    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
+    if(sscanf(params, "ud", targetid, vw)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setvw [playerid] [world id]");
+    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
     else
     {
         PlayerInfo[targetid][pVW] = vw;
@@ -3555,8 +3555,8 @@ CMD:freeze(playerid, params[])
 	{
 		new targetid, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /freeze [playerid]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /freeze [playerid]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
 		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has froze %s.", GetName(playerid), GetName(targetid));
 		SendClientMessageToAll(COLOR_RED, string);
 		format(string, sizeof(string), "FREEZE:{FFFFFF} You have been frozen by %s.", GetName(playerid));
@@ -3572,8 +3572,8 @@ CMD:unfreeze(playerid, params[])
 	{
 		new targetid, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /unfreeze [playerid]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /unfreeze [playerid]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
 		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has unfroze %s.", GetName(playerid), GetName(targetid));
 		SendClientMessageToAll(COLOR_RED, string);
 		format(string, sizeof(string), "FREEZE:{FFFFFF} You have been unfrozen by %s.", GetName(playerid));
@@ -3589,8 +3589,8 @@ CMD:clearcheck(playerid, params[])
 	{
 		new targetid, string[128];
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
-		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "USAGE:{FFFFFF} /clearcheck [playerid]");
-		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} That player isn't online.");
+		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /clearcheck [playerid]");
+		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
         format(string, sizeof(string), "AdmWarn:{FFFFFF} Administrator %s has cleared %s's Anti Airbrake check.", GetName(playerid), GetName(targetid));
 		MessageToAdmins(COLOR_RED, string);
 		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully cleared %s's Anti Airbrake check.", GetName(targetid));
