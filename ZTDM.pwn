@@ -270,17 +270,17 @@ new Timers[4];
 
 new randomMessages[][] =
 {
-	"{D37400}SERVER:{FFFFFF} Donate to the community to keep the server alive!",
-  	"{D37400}SERVER:{FFFFFF} Visit our website and keep yourself updated with the community! zanate.net.",
-   	"{D37400}SERVER:{FFFFFF} Spotted a hacker? Use /report or take a screenshot and report them on the forums.",
-    "{D37400}SERVER:{FFFFFF} Make sure to check out /updates frequently to see what's new!",
-    "{D37400}SERVER:{FFFFFF} Check out /credits to see the list of all the people that helped with this server!",
-	"{D37400}SERVER:{FFFFFF} Breaking rules will just get you punished and give you bad reputation on the server!",
-    "{D37400}SERVER:{FFFFFF} Got a suggestion or found a bug? Then please suggest/report it on zanate.net/foro.",
-    "{D37400}SERVER:{FFFFFF} Make sure to check out other projects on other games by Zanate Gaming on www.zanate.net.",
+	"{D37400}SERVER:{FFFFFF} ¡Dona para ayudarnos a mantener el servidor!",
+  	"{D37400}SERVER:{FFFFFF} Visita nuestro website para mantenerte al tanto del servidor: zanate.net.",
+   	"{D37400}SERVER:{FFFFFF} ¿Un hacker? Usa /report para enviar un reporte a los administradores, o haz una publicación en los foros.",
+    "{D37400}SERVER:{FFFFFF} Usa /updates para saber qué ha cambiado en el servidor.",
+    "{D37400}SERVER:{FFFFFF} /credits para mirar quiénes contribuyeron al desarrollo de este servidor.",
+	"{D37400}SERVER:{FFFFFF} Romper las reglas te dará mala reputación y recibirás una penalización.",
+    "{D37400}SERVER:{FFFFFF} ¿Tienes una sugerencia o encontraste un bug? Repórtalo/sugiérelo en zanate.net/foro",
+    "{D37400}SERVER:{FFFFFF} Revisa zanate.net para ver qué otros juegos están disponibles en nuestro servidor.",
     "{D37400}SERVER:{FFFFFF} Rule 2: Drive by with Deagle and Combat shotgun is NOT allowed! Type /rules for full rule dialog.",
     "{D37400}SERVER:{FFFFFF} Rule 6: Car Parking/Ramming and Heliblading is NOT allowed! Type /rules for full rule dialog.",
-    "{D37400}SERVER:{FFFFFF} Is the game feeling too quiet for you? Use /radio to listen to some music!"
+    "{D37400}SERVER:{FFFFFF} ¿Sientes un poco calmado el juego? ¡Usa /radio para escuchar las estaciones de radio!"
 };
 
 new Float: moneyjobs[4][4] =
@@ -748,8 +748,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 {
 	new string[128];
 	SendDeathMessage(killerid, playerid, reason);
-	SendClientMessage(killerid, COLOR_RED, "{00FF22}KILL:{FFFFFF} You have killed an enemy! +1 EXP and 500$");
-	format(string, sizeof(string), "DEATH:{FFFFFF} You have been killed by %s, you lost 300$.", GetName(killerid));
+	SendClientMessage(killerid, COLOR_RED, "{00FF22}KILL:{FFFFFF} ¡Has matado a un enemigo! +1 exp y $500");
+	format(string, sizeof(string), "DEATH:{FFFFFF} Has sido asesinado por %s, - 300$.", GetName(killerid));
 	SendClientMessage(playerid, COLOR_RED, string);
 	PlayerPlaySound(killerid, 1057, 0, 0, 0);
 	PlayerInfo[playerid][pDeaths]++;
@@ -769,10 +769,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 	{
 	    case 3:
 	    {
-	        format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s has just performed Multi Kill!", GetName(killerid));
+	        format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡%s ha hecho una Multi Kill!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~y~Multi Kill!", 2000, 6);
-			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Multi Kill! +3 EXP + 2500$");
+			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Multi Kill! +3 EXP + $2500");
 			GivePlayerMoney(killerid, 2500);
 			PlayerInfo[killerid][pMoney] += 2500;
 			SetPlayerScore(killerid, GetPlayerScore(killerid) + 3);
@@ -780,10 +780,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 		}
 		case 5:
 		{
-		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s has just performed Mega Kill!", GetName(killerid));
+		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡%s ha logrado una Mega Kill!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~y~Mega Kill!", 2000, 6);
-			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Mega Kill! +5 EXP + 3000$");
+			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Mega Kill! +5 EXP + $3000");
 			GivePlayerMoney(killerid, 3000);
             PlayerInfo[killerid][pMoney] += 3000;
 			SetPlayerScore(killerid, GetPlayerScore(killerid) + 5);
@@ -791,10 +791,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 		}
 		case 7:
 		{
-		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s has just reached Monster Killing Spree!", GetName(killerid));
+		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡%s ha alcanzado una Monster Killing Spree!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~r~Monster Killing Spree!", 2000, 6);
-			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Monster Killing Spree! +8 EXP + 4000$");
+			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Monster Killing Spree! +8 EXP + $4000");
 			GivePlayerMoney(killerid, 4000);
             PlayerInfo[killerid][pMoney] += 4000;
 			SetPlayerScore(killerid, GetPlayerScore(killerid) + 8);
@@ -802,10 +802,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 		}
 		case 10:
 		{
-		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s is Dominating!!", GetName(killerid));
+		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡¡%s está dominando!!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~r~Dominating!!", 2000, 6);
-			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Dominating!! +12 EXP + 5500$");
+			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} ¡¡Dominando!! +12 EXP + $5500");
 			GivePlayerMoney(killerid, 5500);
             PlayerInfo[killerid][pMoney] += 5500;
 			SetPlayerScore(killerid, GetPlayerScore(killerid) + 12);
@@ -813,10 +813,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 		}
 		case 15:
 		{
-		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s is Unstoppable!!", GetName(killerid));
+		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡%s es imparable!!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~r~Unstoppable!!", 2000, 6);
-			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Unstoppable!! +20 EXP + 8500$");
+			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} ¡¡Imparable!! +20 EXP + $8500");
 			GivePlayerMoney(killerid, 8500);
             PlayerInfo[killerid][pMoney] += 8500;
 			SetPlayerScore(killerid, GetPlayerScore(killerid) + 20);
@@ -824,7 +824,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		}
 		case 25:
 		{
-		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} %s is on Madness Spree!!!", GetName(killerid));
+		    format(string, sizeof(string), "{DD8C00}KILL STREAK:{FFFFFF} ¡¡¡%s ha conseguido una Madness Spree!!!", GetName(killerid));
 	        SendClientMessageToAll(orange, string);
 	        GameTextForPlayer(killerid, "~r~Madness Spree!!!", 2000, 6);
 			SendClientMessage(killerid, COLOR_RED, "{DD8C00}KILL STREAK:{FFFFFF} Madness Spree!!! +35 EXP + 15500$");
@@ -842,9 +842,9 @@ public OnPlayerDeath(playerid, killerid, reason)
 		GetPlayerIp(playerid, IP[playerid], 16);
 		format(string, sizeof(string), "banip %s", IP[playerid]);
 		SendRconCommand(string);
-		format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for fake killing.", GetName(playerid));
+		format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por "fake killing".", GetName(playerid));
 		SendClientMessageToAll(COLOR_RED, string);
-		SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} You have been banned for fake killing, in case this ban is wrong write an appeal on zanate.net/foro.");
+		SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por "fake killing", si creés que el ban es equivocado, repórtalo en zanate.net/foro.");
 		KickPlayer(playerid);
 	}
 	SetPVarInt(playerid,"PlayerLastDeath",gettime());
@@ -864,7 +864,7 @@ public OnVehicleDeath(vehicleid, killerid)
 public OnPlayerText(playerid, text[])
 {
 	new string[128];
-	if(Logged[playerid] == 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You need to be logged in to chat.");
+	if(Logged[playerid] == 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Necesitas estar dentro del juego para chatear.");
 	else
 	{
 		format(string, sizeof(string), "%s(%d):{FFFFFF} %s", GetName(playerid), playerid, text);
@@ -1017,7 +1017,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
     new string[128], query[1024];
 	if (strfind(inputtext, "%", false) != -1)
 	{
-		SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Invalid character entered.");
+		SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Nombre de personaje inválido.");
 	    return 0;
 	}
 	if(dialogid == DIALOG_REGISTER)
@@ -1059,7 +1059,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
    			{
-      			ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_MSGBOX,""COL_RED"KICKED",""COL_RED"You have been kicked for entering an incorrect password.","QUIT","");
+      			ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_MSGBOX,""COL_RED"KICKED",""COL_RED"Has sido desconectado por introducir una contraseña incorrecta.","QUIT","");
 				KickPlayer(playerid);
 			}
    			return 1;
@@ -1070,8 +1070,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
    	    if(!response)
    	    {
    	        KickPlayer(playerid);
-			SendClientMessage(playerid, COLOR_RED, "KICK:{FFFFFF} You have been kicked from the server.");
-			SendClientMessage(playerid, COLOR_RED, "REASON:{FFFFFF} Disagreeing with rules.");
+			SendClientMessage(playerid, COLOR_RED, "KICK:{FFFFFF} Has sido desconectado del servidor.");
+			SendClientMessage(playerid, COLOR_RED, "REASON:{FFFFFF} Falta de acatamiento a las reglas.");
 		}
 	}
 	else if(dialogid == DIALOG_SHOP)
@@ -1083,123 +1083,123 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    case 0:
 			    {
-			        if(PlayerInfo[playerid][pMoney] < 500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+			        if(PlayerInfo[playerid][pMoney] < 500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -500);
 					PlayerInfo[playerid][pMoney] -= 500;
 					GivePlayerWeapon(playerid, 9, 1);
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Chainsaw for 500$.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una sierra (chainsaw) por $500.");
 				}
 				case 1:
 				{
-				    if(PlayerInfo[playerid][pMoney] < 1500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+				    if(PlayerInfo[playerid][pMoney] < 1500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -1500);
 					PlayerInfo[playerid][pMoney] -= 1500;
 					GivePlayerWeapon(playerid, 22, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Colt 45 for 1500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una Colt 45 por $1500.");
 				}
 				case 2:
 				{
-				    if(PlayerInfo[playerid][pMoney] < 2000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+				    if(PlayerInfo[playerid][pMoney] < 2000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -2000);
 					PlayerInfo[playerid][pMoney] -= 2000;
 					GivePlayerWeapon(playerid, 23, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Silenced Pistol for 2000$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una pistola con silenciador (Silenced Pistol) for $2000.");
 				}
 				case 3:
 				{
-				    if(PlayerInfo[playerid][pMoney] < 3000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+				    if(PlayerInfo[playerid][pMoney] < 3000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -3000);
 					PlayerInfo[playerid][pMoney] -= 3000;
 					GivePlayerWeapon(playerid, 24, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Desert Eagle for 3000$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una Desert Eagle por $3000.");
 				}
 				case 4:
 				{
-				    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+				    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, - 3500);
 					PlayerInfo[playerid][pMoney] -= 3500;
 					GivePlayerWeapon(playerid, 25, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Shotgun for 3500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una pistola (Shotgun) for $3500.");
                 }
                 case 5:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 4500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 4500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -4500);
 					PlayerInfo[playerid][pMoney] -= 4500;
 					GivePlayerWeapon(playerid, 26, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Sawn Off Shotgun for 4500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una Sawn Off Shotgun por $4500.");
                 }
                 case 6:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 8500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 8500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -8500);
 					PlayerInfo[playerid][pMoney] -= 8500;
 					GivePlayerWeapon(playerid, 27, 300);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Combat Shotgun for 8500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una Combat Shotgun por $8500.");
                 }
                 case 7:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -3500);
 					PlayerInfo[playerid][pMoney] -= 3500;
 					GivePlayerWeapon(playerid, 28, 500);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a UZI for 3500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una UZI por $3500.");
                 }
                 case 8:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 3500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -3500);
 					PlayerInfo[playerid][pMoney] -= 3500;
 					GivePlayerWeapon(playerid, 32, 500);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Tec-9 for 3500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una Tec-9 por $3500.");
                 }
                 case 9:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 5500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 5500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -5500);
 					PlayerInfo[playerid][pMoney] -= 5500;
 					GivePlayerWeapon(playerid, 29, 500);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a MP5 for 5500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una MP5 por $5500.");
                 }
                 case 10:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 7500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 7500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -7500);
 					PlayerInfo[playerid][pMoney] -= 7500;
 					GivePlayerWeapon(playerid, 30, 500);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a AK-47 for 7500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una AK-47 por $7500.");
                 }
                 case 11:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 8000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 8000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -8000);
 					PlayerInfo[playerid][pMoney] -= 8000;
 					GivePlayerWeapon(playerid, 31, 500);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a M4 for 8000$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una M4 por $8000.");
                 }
                 case 12:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 10000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 10000) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -10000);
 					PlayerInfo[playerid][pMoney] -= 10000;
 					GivePlayerWeapon(playerid, 34, 150);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Sniper for 10000$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado un rifle con mira (Sniper) por $10000.");
                 }
                 case 13:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 2500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 2500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -2500);
 					PlayerInfo[playerid][pMoney] -= 2500;
 					GivePlayerWeapon(playerid, 16, 1);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought a Grenade for 2500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una granada (Grenade) por $2500.");
                 }
                 case 14:
                 {
-                    if(PlayerInfo[playerid][pMoney] < 1500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You don't have enough money to buy this weapon.");
+                    if(PlayerInfo[playerid][pMoney] < 1500) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No tienes suficiente dinero para comprar esto.");
 					GivePlayerMoney(playerid, -1500);
 					PlayerInfo[playerid][pMoney] -= 1500;
 					SetPlayerArmour(playerid, 100.0);
-                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully bought Armour for 1500$.");
+                    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has comprado una armadura (Armour) por $1500.");
                 }
 			}
 		}
@@ -1289,32 +1289,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            case 0:
 	            {
 	                PlayAudioStreamForPlayer(playerid, "http://www.181.fm/stream/pls/181-power.pls");
-					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to 181.FM - Power 181. Use /radiooff to stop listening.");
+					SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando 181.FM - Power 181. Usa /radiooff para dejar de escucharlo.");
 				}
 				case 1:
 				{
 				    PlayAudioStreamForPlayer(playerid, "http://tuner.defjay.com:80/listen.pls");
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to DEFJAY.COM - R&B. Use /radiooff to stop listening.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando DEFJAY.COM - R&B. Usa /radiooff para dejar de escucharlo.");
 				}
 				case 2:
 				{
 				    PlayAudioStreamForPlayer(playerid, "http://www.181.fm/stream/pls/181-rock.pls");
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to Rock 181.FM. Use /radiooff to stop listening.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando Rock 181.FM. Usa /radiooff para dejar de escucharlo.");
 				}
 				case 3:
 				{
 				    PlayAudioStreamForPlayer(playerid, "http://www.181.fm/stream/pls/181-kickincountry.pls");
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to 181.FM - Kickin' Country. Use /radiooff to stop listening.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando 181.FM - Kickin' Country. Usa /radiooff para dejar de escucharlo.");
 				}
 				case 4:
 				{
 				    PlayAudioStreamForPlayer(playerid, "http://www.181.fm/stream/pls/181-awesome80s.pls");
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to 181.FM - Awesome 80s. Use /radiooff to stop listening.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando 181.FM - Awesome 80s. Usa /radiooff para dejar de escucharlo.");
 				}
 				case 5:
 				{
                     PlayAudioStreamForPlayer(playerid, "http://www.hot108.com/hot108.pls");
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You are now listening to Hot 108 Jamz. Use /radiooff to stop listening.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Estás escuchando Hot 108 Jamz. Usa /radiooff para dejar de escucharlo.");
 				}
 			}
 		}
@@ -1331,7 +1331,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	                if(PlayerInfo[playerid][pColor] == 0)
 	                {
 						SetPlayerColor(playerid, 0xB8860BAA);
-						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your VIP color.");
+						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Se ha puesto el color VIP con éxito.");
 						PlayerInfo[playerid][pColor] = 1;
 					}
 					else if(PlayerInfo[playerid][pColor] == 1)
@@ -1355,7 +1355,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							    SetPlayerColor(playerid, 0x33CCFFAA);
 							}
 						}
-						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully set your color back to normal.");
+						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Se ha puesto el color normal con éxito.");
 						PlayerInfo[playerid][pColor] = 0;
 					}
 				}
@@ -1364,19 +1364,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if(PlayerInfo[playerid][pPM] == 1)
 					{
 						PlayerInfo[playerid][pPM] = 0;
-						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have enabled your PMs.");
+						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has activado mensajes privados (MPS).");
 					}
 					else
 					{
 					    PlayerInfo[playerid][pPM] = 1;
-						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have disabled your PMs.");
+						SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Has desactivado tus mensajes privados (MPS).");
 					}
 				}
 				case 2:
 				{
 				    PlayerInfo[playerid][pKills] = 0;
 				    PlayerInfo[playerid][pDeaths] = 0;
-				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} You have successfully reseted your stats.");
+				    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Se han reseteado tus stats con éxito.");
 				}
 			}
 		}
@@ -1390,35 +1390,35 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				case 0:
 				{
-					ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Please insert your desired clan name below.", "Enter", "Cancel");
+					ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Por favor inserta el nombre del clan deseado.", "Enter", "Cancel");
 				}
 				case 1:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Please insert your desired clan MOTD below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Por favor inserta el mensaje del clan que deseas.", "Enter", "Cancel");
 				}
 				case 2:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK1, DIALOG_STYLE_INPUT, "Clan Rank 1", "{FFFFFF}Please insert your desired clan rank 1 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK1, DIALOG_STYLE_INPUT, "Clan Rank 1", "{FFFFFF}Por favor inserta el nombre del rango 1 deseado.", "Enter", "Cancel");
 				}
 				case 3:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Please insert your desired clan rank 2 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Por favor inserta el nombre del rango 2 deseado.", "Enter", "Cancel");
 				}
 				case 4:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Please insert your desired clan rank 3 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Por favor inserta el nombre del rango 3 deseado.", "Enter", "Cancel");
 				}
 				case 5:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Please insert your desired clan rank 4 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Por favor inserta el nombre del rango 4 deseado.", "Enter", "Cancel");
 				}
 				case 6:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Please insert your desired clan rank 5 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Por favor inserta el nombre del rango 5 deseado.", "Enter", "Cancel");
 				}
 				case 7:
 				{
-				    ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Please insert your desired clan rank 6 name below.", "Enter", "Cancel");
+				    ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Por favor inserta el nombre del rango 6 deseado.", "Enter", "Cancel");
 				}
 				case 8:
 				{
@@ -1450,19 +1450,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Clan Name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Please type in your desired clan name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor inserta el nombre del clan deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Por favor inserta el nombre del clan deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 2)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Your clan name can't have below 2 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Please type in your desired clan name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre de tu clan debe ser mínimo de dos caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLNAME, DIALOG_STYLE_INPUT, "Clan Name", "{FFFFFF}Por favor inserta el nombre del clan deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cName], 129, "%s", inputtext);
 				SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado el nombre de tu clan con éxito a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1474,19 +1474,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Clan MOTD if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Please type in your desired clan MOTD below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor inserta el mensaje del clan si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Por favor inserta el mensaje del clan que deseas.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 5)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Your clan MOTD can't be below 5 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Please type in your desired clan MOTD below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El mensaje del clan no puede ser menor a cinco caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLMOTD, DIALOG_STYLE_INPUT, "Clan MOTD", "{FFFFFF}Por favor inserta el mensaje del clan que deseas.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cMOTD], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan MOTD to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el mensaje del clan a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -2300,12 +2300,12 @@ public BanResults(playerid, account)
 		format(strName, 24, "%s", usName);
 		mysql_format(mysql, query, sizeof(query), "UPDATE `users` SET `Banned`= 0 WHERE `Username` = '%e' LIMIT 1", strName);
         mysql_tquery(mysql, query, "", "");
-        format(string, sizeof(string), "UNBAN:{FFFFFF} You have successfully unbanned %s.", strName);
+        format(string, sizeof(string), "UNBAN:{FFFFFF} Has desbaneado con éxito a %s.", strName);
         SendClientMessage(playerid, COLOR_RED, string);
     }
     else 
     {
-        SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Couldn't find that player in the database.");
+        SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No se ha podido encontrar el jugador en la base de datos.");
     }
     return 1;
 }
@@ -2455,11 +2455,11 @@ public OnAccountCheck(playerid)
     {
         cache_get_field_content(0, "Password", PlayerInfo[playerid][pPass], mysql, 129);
         PlayerInfo[playerid][pID] = cache_get_field_content_int(0, "ID");
-        ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Zanate TDM", "{FFFFFF}Welcome back to {F81414}Zanate TDM.{FFFFFF}\nType in your password below to login.", "Login", "Quit");
+        ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Zanate TDM", "{FFFFFF}Bienvenido de vuelta a{F81414}Zanate TDM.{FFFFFF}\nEscribe tu contraseña para entrar..", "Login", "Quit");
     }
     else
     {
-    	ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Zanate TDM", "{FFFFFF} Welcome to {F81414}Zanate TDM!{FFFFFF}\nType in your desired password below to register. ", "Register", "Quit");
+    	ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Zanate TDM", "{FFFFFF} Bienvenido a{F81414}Zanate TDM!{FFFFFF}\nEscribe la contraseña deseada para registrarte. ", "Register", "Quit");
     }
     return 1;
 }
@@ -2493,8 +2493,8 @@ public OnAccountLoad(playerid)
 
 	if(PlayerInfo[playerid][pBanned] == 1)
 	{
-	    SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} You are currently banned from this server.");
-	    SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} If you think your ban reason is invalid, please make an ban appeal on zanate.net/foro.");
+	    SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado de este servidor.");
+	    SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} Si crees que la razón es inválida, publica una apelación en zanate.net/foro.");
 		KickPlayer(playerid);
 	}
 	else
@@ -2517,7 +2517,7 @@ public OnAccountRegister(playerid)
 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
-    if(!success) SendClientMessage(playerid, yellow, "SERVER{FFFFFF}: Unknown command, use /cmds for full command list.");
+    if(!success) SendClientMessage(playerid, yellow, "SERVER{FFFFFF}: Comando desconocido, usa /cmds para ver la lista de comandos.");
     return 1;
 }
 
@@ -2528,15 +2528,15 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
 	{
 		if(checkpointid == CP[i])
 		{
-			if(ZoneInfo[i][zTeam] == gTeam[playerid]) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Your team is the current holder of this zone.");
-			if(UnderAttack[i] == 1) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Somebody is already attacking this zone.");
-			if(IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can't capture zones while being in a vehicle.");
+			if(ZoneInfo[i][zTeam] == gTeam[playerid]) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Tu equipo actualmente controla esta zona.");
+			if(UnderAttack[i] == 1) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Alguien más ya está atacando la zona.");
+			if(IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} No puedes capturar la zona si estás en un vehículo.");
 			UnderAttack[i] = 1;
 			timer[playerid] = SetTimerEx("SetZone", 30000, false, "i", playerid);
 			GangZoneFlashForAll(Zone[i],COLOR_RED);
-			format(string, sizeof(string), "INFO:{FFFFFF} You're currently attacking the %s Turf, stay in it the marker for 30 seconds to take it over.", ZoneInfo[i][zName]);
+			format(string, sizeof(string), "INFO:{FFFFFF} Estás atacando la base %s, mantente en el marcador por 30 segundos para apoderarte de ella.", ZoneInfo[i][zName]);
 			SendClientMessage(playerid, COLOR_GREY, string);
-			format(string, sizeof(string), "GANGZONE:{FFFFFF} %s Turf is under attack!", ZoneInfo[i][zName]);
+			format(string, sizeof(string), "GANGZONE:{FFFFFF} ¡La base %s está bajo ataque!", ZoneInfo[i][zName]);
 			SendClientMessageToAll(orange, string);
 			tCheck[playerid] = i;
 		}
@@ -2568,7 +2568,7 @@ public SetZone(playerid)
 	GivePlayerMoney(playerid, ZoneInfo[tCheck[playerid]][zMoney]);
  	PlayerInfo[playerid][pMoney] += ZoneInfo[tCheck[playerid]][zMoney];
 	PlayerInfo[playerid][pTurfs]++;
-	format(string, sizeof(string), "INFO:{FFFFFF} Gangzone captured, +%d EXP points and %d$.", ZoneInfo[tCheck[playerid]][zEXP], ZoneInfo[tCheck[playerid]][zMoney]);
+	format(string, sizeof(string), "INFO:{FFFFFF} Zona capturada, +%d EXP + %d$.", ZoneInfo[tCheck[playerid]][zEXP], ZoneInfo[tCheck[playerid]][zMoney]);
 	SendClientMessage(playerid, COLOR_GREY, string);
 	UnderAttack[tCheck[playerid]] = 0;
 	KillTimer(timer[playerid]);
@@ -2583,7 +2583,7 @@ public SetGangZone(playerid)
 {
 	new string[128];
 	GangZoneShowForAll(Zone[tCheck[playerid]],GetTeamZoneColor(playerid));
-	format(string, sizeof string, "GANGZONE:{FFFFFF} %s has captured the %s Turf for %s.", GetName(playerid), ZoneInfo[tCheck[playerid]][zName], GetTeamName(playerid));
+	format(string, sizeof string, "GANGZONE:{FFFFFF} %s ha capturado la base %s por %s.", GetName(playerid), ZoneInfo[tCheck[playerid]][zName], GetTeamName(playerid));
     SendClientMessageToAll(orange, string);
 	GangZoneStopFlashForAll(Zone[tCheck[playerid]]);
 	ZoneInfo[tCheck[playerid]][zTeam] = gTeam[playerid];
@@ -2958,7 +2958,7 @@ public OnLookupComplete(playerid)
 {
 	if(IsProxyUser(playerid))
 	{
-		SendClientMessage(playerid, COLOR_RED, "ANTI PROXY:{FFFFFF} Proxy Detected! We don't accept proxy here.");
+		SendClientMessage(playerid, COLOR_RED, "ANTI PROXY:{FFFFFF} ¡Proxy detectado! No puedes entrar con un proxy.");
 		KickPlayer(playerid);
 	}
 }
@@ -2979,9 +2979,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for using Jetpack.", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por usar Jetpack.", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for using Jetpack, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por usar Jetpack, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 			 	}
 			    else if(GetPlayerWeapon(i) == 35)
@@ -2990,9 +2990,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (RPG)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (RPG)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 36)
@@ -3001,9 +3001,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
                     SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (RPG)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (RPG)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 37)
@@ -3012,9 +3012,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (Flame Thrower)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (Flame Thrower)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 38)
@@ -3023,9 +3023,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (Minigun)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (Minigun)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 39)
@@ -3034,9 +3034,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (Satchel Charger)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (Satchel Charger)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 40)
@@ -3045,9 +3045,9 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (Detonator)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (Detonator)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerWeapon(i) == 46)
@@ -3056,14 +3056,14 @@ public AntiCheat()
 					GetPlayerIp(i, IP[i], 16);
 					format(string, sizeof(string), "banip %s", IP[i]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Weapon Hacking (Parachute)", GetName(i));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Weapon Hacking (Parachute)", GetName(i));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Weapon Hacking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(i, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Weapon Hacking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(i);
 				}
 				else if(GetPlayerMoney(i) != PlayerInfo[i][pMoney])
 				{
-				    format(string, sizeof(string), "AdmWarn:{FFFFFF} Player %s (ID: %d) appears to have mismatch in money, he might be hacking, check him!", GetName(i), i);
+				    format(string, sizeof(string), "AdmWarn:{FFFFFF} Jugador %s (ID: %d) appears to have mismatch in money, he might be hacking, check him!", GetName(i), i);
 					MessageToAdmins(COLOR_RED, string);
 					format(string, sizeof(string), "AdmWarn:{FFFFFF} %s's game money: %d, stat money: %d.", GetName(i), GetPlayerMoney(i), PlayerInfo[i][pMoney]);
 					MessageToAdmins(COLOR_RED, string);
@@ -3105,9 +3105,9 @@ public OnPlayerFakeKill(playerid)
 	GetPlayerIp(playerid, IP[playerid], 16);
 	format(string, sizeof(string), "banip %s", IP[playerid]);
 	SendRconCommand(string);
-	format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for fake killing.", GetName(playerid));
+	format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por fake killing.", GetName(playerid));
 	SendClientMessageToAll(COLOR_RED, string);
-	SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} You have been banned for fake killing, in case this ban is wrong write an appeal on zanate.net/foro.");
+	SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por fake killing, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 	KickPlayer(playerid);
 	return 1;
 }
@@ -3133,9 +3133,9 @@ public OnPlayerAirbreak(playerid)
 					GetPlayerIp(playerid, IP[playerid], 16);
 					format(string, sizeof(string), "banip %s", IP[playerid]);
 					SendRconCommand(string);
-					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s has been banned for Airbraking.", GetName(playerid));
+					format(string, sizeof(string), "ANTI-CHEAT:{FFFFFF} %s ha sido baneado por Airbraking.", GetName(playerid));
 					SendClientMessageToAll(COLOR_RED, string);
-					SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} You have been banned for Airbraking, in case this ban is wrong write an appeal on zanate.net/foro.");
+					SendClientMessage(playerid, COLOR_RED, "BANNED:{FFFFFF} Has sido baneado por Airbraking, en caso de que esto no sea correcto, apela el ban en zanate.net/foro.");
 					KickPlayer(playerid);
 				}
 			}
