@@ -1214,66 +1214,66 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        {
 	            case 0:
 	            {
-					strcat(acmds, "{00FF22}/spec{FFFFFF} - Spectates a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/endspec{FFFFFF} - Stops spectating a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/kick{FFFFFF} - Kicks a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/goto{FFFFFF} - Teleports you to a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/a{FFFFFF} - Sends a message to other Administrators.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/check{FFFFFF} - Shows player's stats.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/forcerules{FFFFFF} - Opens the rules dialog for a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/setint{FFFFFF} - Sets player's interior.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/setvw{FFFFFF} - Sets player's virtual world.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/freeze{FFFFFF} - Freezes a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/unfreeze{FFFFFF} - Unfreezes a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/clearcheck{FFFFFF} - Clears player's anti airbreak check.\n", sizeof(acmds));
+					strcat(acmds, "{00FF22}/spec{FFFFFF} - Observar a un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/endspec{FFFFFF} - Dejar de observar el jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/kick{FFFFFF} - Desconecta un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/goto{FFFFFF} - Te teletransporta hacia el jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/a{FFFFFF} - Envía un mensaje a otros administradores.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/check{FFFFFF} - Muestra las estadísticas del jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/forcerules{FFFFFF} - Abre las reglas para un jugador..\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/setint{FFFFFF} - Modifica el interior de un jugador..\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/setvw{FFFFFF} - Modifica el mundo virtual de un jugador..\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/freeze{FFFFFF} - Congela un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/unfreeze{FFFFFF} - Descongela el jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/clearcheck{FFFFFF} - Limpia el registro de "airbreak"..\n", sizeof(acmds));
 					ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 1", acmds, "Okay", "");
 				}
 				case 1:
 				{
-					strcat(acmds, "{00FF22}/slap{FFFFFF} - Slaps a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/ban{FFFFFF} - Bans a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/banip{FFFFFF} - Bans a IP.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/gethere{FFFFFF} - Teleports a player to you.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/giveexp{FFFFFF} - Gives EXP points to a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/warn{FFFFFF} - Gives a warning to a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/ann{FFFFFF} - Sends announce message.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/fixveh{FFFFFF} - Fixes your vehicle.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/cc{FFFFFF} - Clears the chat.\n", sizeof(acmds));
+					strcat(acmds, "{00FF22}/slap{FFFFFF} - Golpea un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/ban{FFFFFF} - Banea un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/banip{FFFFFF} - Banea una IP.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/gethere{FFFFFF} - Teletransporta un jugador hacia tí.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/giveexp{FFFFFF} - Le da EXP a un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/warn{FFFFFF} - Envía una advertencia.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/ann{FFFFFF} - Envía un anuncio.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/fixveh{FFFFFF} - Arregla tu vehículo.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/cc{FFFFFF} - Limpia el chat.\n", sizeof(acmds));
 					ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 2", acmds, "Okay", "");
 				}
 				case 2:
 				{
-					strcat(acmds, "{00FF22}/setexp{FFFFFF} - Sets player's EXP.\n", sizeof(acmds));
-                    strcat(acmds, "{00FF22}/unwarn{FFFFFF} - Removes a warning from a player.\n", sizeof(acmds));
-                    strcat(acmds, "{00FF22}/sethealth{FFFFFF} - Sets player's health.\n", sizeof(acmds));
-                    strcat(acmds, "{00FF22}/setarmour{FFFFFF} - Sets player's armour.\n", sizeof(acmds));
-                    strcat(acmds, "{00FF22}/setkills{FFFFFF} - Sets player's kills.\n", sizeof(acmds));
-                    strcat(acmds, "{00FF22}/setdeaths{FFFFFF} - Sets player's deaths.\n", sizeof(acmds));
+					strcat(acmds, "{00FF22}/setexp{FFFFFF} - Modifica la EXP de un jugador.\n", sizeof(acmds));
+                    strcat(acmds, "{00FF22}/unwarn{FFFFFF} - Remueve una advertencia de un jugador.\n", sizeof(acmds));
+                    strcat(acmds, "{00FF22}/sethealth{FFFFFF} - Modifica la vida de un jugador.\n", sizeof(acmds));
+                    strcat(acmds, "{00FF22}/setarmour{FFFFFF} - Modifica la armadura de un jugador..\n", sizeof(acmds));
+                    strcat(acmds, "{00FF22}/setkills{FFFFFF} - Modifica los asesinatos de un jugador..\n", sizeof(acmds));
+                    strcat(acmds, "{00FF22}/setdeaths{FFFFFF} - Modifica las muertes de un jugador.\n", sizeof(acmds));
 					ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 3", acmds, "Okay", "");
 				}
 				case 3:
 				{
 				    
-				    strcat(acmds, "{00FF22}/unban{FFFFFF} - Unbans a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/unbanip{FFFFFF} - Unbans a IP.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/blowup{FFFFFF} - Blows up a player.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/changename{FFFFFF} - Changes player's name.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/unban{FFFFFF} - Desbanea un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/unbanip{FFFFFF} - Desbanea una IP.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/blowup{FFFFFF} - Explota a un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/changename{FFFFFF} - Cambia el nombre de un jugador.\n", sizeof(acmds));
 				    ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 4", acmds, "Okay", "");
 				}
 				case 4:
 				{
-				    strcat(acmds, "{00FF22}/makeadmin{FFFFFF} - Sets player's admin level.\n", sizeof(acmds));
-				    strcat(acmds, "{00FF22}/makeleader{FFFFFF} - Sets player as a leader of a clan.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/makeadmin{FFFFFF} - Modifica el nivel de administrador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/makeleader{FFFFFF} - Selecciona el líder de un clan..\n", sizeof(acmds));
 				    ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 5", acmds, "Okay", "");
 				}
 				case 5:
 				{
-				    strcat(acmds, "{00FF22}/makevip{FFFFFF} - Sets player's VIP level.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/makevip{FFFFFF} - Modifica el nivel VIP de un jugador.\n", sizeof(acmds));
 				    ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 1337", acmds, "Okay", "");
 				}
 				case 6:
 				{
-				    strcat(acmds, "{00FF22}/tod{FFFFFF} - Sets the time of day.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/tod{FFFFFF} - Modifica el tiempo.\n", sizeof(acmds));
 				    ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Level 1338", acmds, "Okay", "");
 				}
 			}
