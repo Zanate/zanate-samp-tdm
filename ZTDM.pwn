@@ -385,15 +385,15 @@ public OnGameModeInit()
 	
 
 	CreatePickup(1274, 1, 2527.0146, -1663.9749, 14.8662, -1);
-	Create3DTextLabel("[Grove Street Shop]\n Type /shop to shop", COLOR_RED, 2527.0146, -1663.9749, 15.4662, 40.0, 0, 1);
+	Create3DTextLabel("[Grove Street Shop]\n Escribe /shop para comprar", COLOR_RED, 2527.0146, -1663.9749, 15.4662, 40.0, 0, 1);
     CreatePickup(1274, 1, 1872.0562, -2011.1937, 13.2469, -1);
-  	Create3DTextLabel("[Aztecas Shop]\n Type /shop to shop", COLOR_RED, 1872.0562, -2011.1937, 13.8469, 40.0, 0, 1);
+  	Create3DTextLabel("[Aztecas Shop]\n Escribe /shop para comprar", COLOR_RED, 1872.0562, -2011.1937, 13.8469, 40.0, 0, 1);
 	CreatePickup(1274, 1, 2233.0354, -1180.0729, 25.5972, -1);
-	Create3DTextLabel("[Ballas Shop]\n Type /shop to shop", COLOR_RED, 2233.0354, -1180.0729, 26.1972, 40.0, 0, 1);
+	Create3DTextLabel("[Ballas Shop]\n Escribe /shop para comprar", COLOR_RED, 2233.0354, -1180.0729, 26.1972, 40.0, 0, 1);
 	CreatePickup(1274, 1, 2808.0178, -1190.5220, 25.0437, -1);
-    Create3DTextLabel("[Vagos Shop]\n Type /shop to shop", COLOR_RED, 2808.0178, -1190.5220, 25.6437, 40.0, 0, 1);
+    Create3DTextLabel("[Vagos Shop]\n Escribe /shop para comprar", COLOR_RED, 2808.0178, -1190.5220, 25.6437, 40.0, 0, 1);
     CreatePickup(1274, 1, 1550.8929, -1669.9216, 13.3615, -1);
-    Create3DTextLabel("[Police Shop]\n Type /shop to shop", COLOR_RED, 1550.8929, -1669.9216, 13.9615, 40.0, 0, 1);
+    Create3DTextLabel("[Police Shop]\n Escribe /shop para comprar", COLOR_RED, 1550.8929, -1669.9216, 13.9615, 40.0, 0, 1);
 	return 1;
 }
 
