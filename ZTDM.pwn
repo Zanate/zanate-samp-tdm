@@ -1498,19 +1498,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 1 name if you want to change it.");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 1 deseado si quieres cambiarlo.");
 				ShowPlayerDialog(playerid, DIALOG_CLRANK1, DIALOG_STYLE_INPUT, "Clan Rank 1", "{FFFFFF}Please insert your desired clan rank 1 name below.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK1, DIALOG_STYLE_INPUT, "Clan Rank 1", "{FFFFFF}Please insert your desired clan rank 1 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK1, DIALOG_STYLE_INPUT, "Clan Rank 1", "{FFFFFF}Por favor inserta el nombre del rango 1 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank1], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 1 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 1 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1522,19 +1522,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 2 name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Please insert your desired clan rank 2 name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 2 deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Por favor inserta el nombre del rango 2 deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Please insert your desired clan rank 2 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK2, DIALOG_STYLE_INPUT, "Clan Rank 2", "{FFFFFF}Por favor inserta el nombre del rango 2 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank2], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 2 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 2 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1546,19 +1546,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 3 name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Please insert your desired clan rank 3 name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 3 deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Por favor inserta el nombre del rango 3 deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Please insert your desired clan rank 3 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK3, DIALOG_STYLE_INPUT, "Clan Rank 3", "{FFFFFF}Por favor inserta el nombre del rango 3 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank3], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 3 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 3 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1570,19 +1570,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 4 name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Please insert your desired clan rank 4 name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 4 deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Por favor inserta el nombre del rango 4 deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Please insert your desired clan rank 4 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK4, DIALOG_STYLE_INPUT, "Clan Rank 4", "{FFFFFF}Por favor inserta el nombre del rango 4 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank4], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 4 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 4 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1594,19 +1594,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 5 name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Please insert your desired clan rank 5 name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 5 deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Por favor inserta el nombre del rango 5 deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Please insert your desired clan rank 5 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK5, DIALOG_STYLE_INPUT, "Clan Rank 5", "{FFFFFF}Por favor inserta el nombre del rango 5 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank5], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 5 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 5 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
@@ -1618,19 +1618,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    {
 	        if(!strlen(inputtext))
             {
-				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Please type in your desired Rank 6 name if you want to change it.");
-				ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Please insert your desired clan rank 6 name below.", "Enter", "Cancel");
+				SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Por favor escribe el noombre del rango 6 deseado si quieres cambiarlo.");
+				ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Por favor inserta el nombre del rango 6 deseado.", "Enter", "Cancel");
 			}
 			else if(strlen(inputtext) < 3)
 			{
-                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Rank name can't be below 3 characters.");
-                ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Please insert your desired clan rank 6 name below.", "Enter", "Cancel");
+                SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nombre del rango no puede ser menor a tres caracteres.");
+                ShowPlayerDialog(playerid, DIALOG_CLRANK6, DIALOG_STYLE_INPUT, "Clan Rank 6", "{FFFFFF}Por favor inserta el nombre del rango 6 deseado.", "Enter", "Cancel");
 			}
 			else
 			{
 			    format(ClanInfo[PlayerInfo[playerid][pClan]-1][cRank6], 128, "%s", inputtext);
                 SaveClan(PlayerInfo[playerid][pClan]-1);
-				format(string, sizeof(string), "INFO:{FFFFFF} You have successfully changed your clan's rank 6 name to %s.", inputtext);
+				format(string, sizeof(string), "INFO:{FFFFFF} Has cambiado con éxito el nombre del rango 6 a %s.", inputtext);
 				SendClientMessage(playerid, COLOR_GREY, string);
 			}
 		}
