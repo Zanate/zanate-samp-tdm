@@ -3431,9 +3431,9 @@ CMD:spec(playerid, params[])
 		{
 		    PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE_NORMAL);
       	}
-		format(string, sizeof(string), "INFO:{FFFFFF} You're currently spectating %s, use /endspec to stop spectating.", GetName(targetid));
+		format(string, sizeof(string), "INFO:{FFFFFF} Estás observando a %s, usa /endspec para dejar de hacerlo.", GetName(targetid));
 		SendClientMessage(playerid, COLOR_GREY, string);
-		format(string, sizeof(string), "AdmWarn:{FFFFFF} %s is spectating %s", GetName(playerid), GetName(targetid));
+		format(string, sizeof(string), "AdmWarn:{FFFFFF} %s está observando a %s", GetName(playerid), GetName(targetid));
 		MessageToAdmins(COLOR_RED, string);
 	}
 	return 1;
@@ -3457,8 +3457,8 @@ CMD:kick(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /kick [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can't kick higher ranked Administrators.");
-		format(string, sizeof(string), "KICK:{FFFFFF} %s has been kicked by %s.", GetName(targetid), GetName(playerid));
+		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No puedes desconectar a personal con más rango que el tuyo.");
+		format(string, sizeof(string), "KICK:{FFFFFF} %s ha sido desconectado por %s.", GetName(targetid), GetName(playerid));
 		SendClientMessageToAll(COLOR_RED, string);
 		KickWithMessage(targetid, reason);
 	}
@@ -3478,9 +3478,9 @@ CMD:goto(playerid, params[])
 		    new Float:x, Float:y, Float:z;
 		    GetPlayerPos(targetid, x, y, z);
 		    SetPlayerPos(playerid, x+1, y+1, z);
-		    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have sucesfully teleported to %s.", GetName(targetid));
+		    format(string, sizeof(string), "AdmCmd:{FFFFFF} Te has transportado con éxito a %s.", GetName(targetid));
 			SendClientMessage(playerid, COLOR_RED, string);
-			format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has teleported to you.", GetName(playerid));
+			format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s se ha teletransportado hacia t", GetName(playerid));
 			SendClientMessage(targetid, COLOR_GREY, string);
 	    }
 	}
@@ -3495,19 +3495,19 @@ CMD:forcerules(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /forcerules [playerid]");
   		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		strcat(rules, "{00FF22}Rule 1:{FFFFFF} Hacking or using any kind of mods which give you advantage is NOT allowed.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 2:{FFFFFF} Drive By with weapons such as Combat Shotgun and Deagle is NOT allowed.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 3:{FFFFFF} Insulting other players as well as racism will not be tolerated.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 4:{FFFFFF} Do NOT bug abuse, in case you find a bug, report it on the forums please.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 5:{FFFFFF} Server Advertising will not be tolerated, it will lead you to a instant permanent ban.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 6:{FFFFFF} Do NOT Car Park and Heli Blade other players.\n", sizeof(rules));
-		strcat(rules, "{00FF22}Rule 7:{FFFFFF} Using IRL money to sell in game stuff such as accounts, in game money etc will NOT be tolerated. \n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 8:{FFFFFF} Respect Admin's decision, his word is final. In case you don't agree with the administrators action, report it on forum.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Rule 9:{FFFFFF} No Driver Drive By! Due to a lot of players seeming to annoy others with Drive By, we decided to put a rule against it!\n", sizeof(rules));
+		strcat(rules, "{00FF22}Regla 1:{FFFFFF} Hackear o usar mods que te dan ventaja NO está permitido.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 2:{FFFFFF} Drive By with weapons such as Combat Shotgun and Deagle is NOT allowed.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 3:{FFFFFF} Irrespetar a los demás jugadores NO está permitido.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 4:{FFFFFF} Abusar de un bug NO está permitido, en caso de encontrar uno por favor reportarlo en zanate.net/foro.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 5:{FFFFFF} Promocionar otro servidor te dará un ban permanente instantáneo.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 6:{FFFFFF} Do NOT Car Park and Heli Blade other players.\n", sizeof(rules));
+		strcat(rules, "{00FF22}Regla 7:{FFFFFF} Comprar cosas con dinero real en el juego NO está permitido.. \n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 8:{FFFFFF} La decisión de un administrador debe ser respetada, en caso de no estar de acuerdo con algo, repórtalo en el foro.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 9:{FFFFFF} No Driver Drive By! Due to a lot of players seeming to annoy others with Drive By, we decided to put a rule against it!\n", sizeof(rules));
 		ShowPlayerDialog(targetid, DIALOG_RULES, DIALOG_STYLE_MSGBOX, "Rules", rules, "Agree", "Disagree");
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully forced rules dialog to %s", GetName(targetid));
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has mostrado con éxito el diálogo de reglas a  %s", GetName(targetid));
 		SendClientMessage(playerid, COLOR_RED, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has forced the rules dialog onto you.", GetName(playerid));
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha forzado el diálogo de reglas para ti.", GetName(playerid));
 		SendClientMessage(targetid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3523,9 +3523,9 @@ CMD:setint(playerid, params[])
     {
         PlayerInfo[targetid][pInt] = int;
         SetPlayerInterior(targetid, int);
-        format(string, sizeof(string), "AdmCmd:{FFFFFF} You have set %s's interior to %d.", GetName(targetid), int);
+        format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado el interior de %s's a %d.", GetName(targetid), int);
 		SendClientMessage(playerid, COLOR_RED, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your interior to %d.", GetName(playerid), int);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu interior a %d.", GetName(playerid), int);
 		SendClientMessage(playerid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3541,9 +3541,9 @@ CMD:setvw(playerid, params[])
     {
         PlayerInfo[targetid][pVW] = vw;
         SetPlayerVirtualWorld(targetid, vw);
-        format(string, sizeof(string), "AdmCmd:{FFFFFF} You have set %s's Virtual World to %d.", GetName(targetid), vw);
+        format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado el mundo virtual de %s a %d.", GetName(targetid), vw);
 		SendClientMessage(playerid, COLOR_RED, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your Virtual World to %d.", GetName(playerid), vw);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu mundo virtual a %d.", GetName(playerid), vw);
 		SendClientMessage(playerid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3557,9 +3557,9 @@ CMD:freeze(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /freeze [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
-		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has froze %s.", GetName(playerid), GetName(targetid));
+		format(string, sizeof(string), "FREEZE:{FFFFFF} El administrador %s congeló a %s.", GetName(playerid), GetName(targetid));
 		SendClientMessageToAll(COLOR_RED, string);
-		format(string, sizeof(string), "FREEZE:{FFFFFF} You have been frozen by %s.", GetName(playerid));
+		format(string, sizeof(string), "FREEZE:{FFFFFF} Has sido congelado por %s.", GetName(playerid));
 		SendClientMessage(targetid, COLOR_RED, string);
 		TogglePlayerControllable(targetid, 0);
 	}
@@ -3574,9 +3574,9 @@ CMD:unfreeze(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /unfreeze [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
-		format(string, sizeof(string), "FREEZE:{FFFFFF} Administrator %s has unfroze %s.", GetName(playerid), GetName(targetid));
+		format(string, sizeof(string), "FREEZE:{FFFFFF} El administrador %s descongeló a %s.", GetName(playerid), GetName(targetid));
 		SendClientMessageToAll(COLOR_RED, string);
-		format(string, sizeof(string), "FREEZE:{FFFFFF} You have been unfrozen by %s.", GetName(playerid));
+		format(string, sizeof(string), "FREEZE:{FFFFFF} Has sido descongelado por %s.", GetName(playerid));
 		SendClientMessage(targetid, COLOR_RED, string);
 		TogglePlayerControllable(targetid, 1);
 	}
@@ -3591,9 +3591,9 @@ CMD:clearcheck(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "u", targetid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /clearcheck [playerid]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} El jugador no está en línea.");
-        format(string, sizeof(string), "AdmWarn:{FFFFFF} Administrator %s has cleared %s's Anti Airbrake check.", GetName(playerid), GetName(targetid));
+        format(string, sizeof(string), "AdmWarn:{FFFFFF} El administrador %s ha limpiado el registro de airbrake de %s", GetName(playerid), GetName(targetid));
 		MessageToAdmins(COLOR_RED, string);
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully cleared %s's Anti Airbrake check.", GetName(targetid));
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has limpiado con éxito el registo de airbrake de %s", GetName(targetid));
 		SendClientMessage(playerid, COLOR_RED, string);
 		ABCheck[targetid] = 0;
 	}
@@ -3617,9 +3617,9 @@ CMD:gethere(playerid,params[])
 		{
 			GetPlayerPos(playerid, x, y, z);
 		    SetPlayerPos(targetid, x+1, y+1, z);
-		    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully teleported %s to yourself.", GetName(targetid));
+		    format(string, sizeof(string), "AdmCmd:{FFFFFF} Has transportado con éxito a %s hacia ti.", GetName(targetid));
 			SendClientMessage(playerid, COLOR_RED, string);
-			format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has teleported you to himself.", GetName(playerid));
+			format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s te ha transportado hacia él.", GetName(playerid));
 			SendClientMessage(targetid, COLOR_GREY, string);
 		}
 	}
@@ -3637,7 +3637,7 @@ CMD:slap(playerid, params[])
 	   	{
 			GetPlayerPos(targetid, x, y, z);
 	    	SetPlayerPos(targetid, x, y, z+6);
-	    	format(str, sizeof(str),"AdmCmd:{FFFFFF} You have successfully slapped %s!", GetName(targetid));
+	    	format(str, sizeof(str),"AdmCmd:{FFFFFF} ¡Has golpeado exitosamente a %s!", GetName(targetid));
 	    	SendClientMessage(playerid, COLOR_RED, str);
 	    	PlayerPlaySound(targetid, 1190, 0.0, 0.0, 0.0);
 	    	PlayerPlaySound(playerid, 1190, 0.0, 0.0, 0.0);
@@ -3655,11 +3655,11 @@ CMD:ban(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[60]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /ban [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is a higher ranked Administrator.");
+		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese administrador tiene un rango más alto que el tuyo.");
 		PlayerInfo[targetid][pBanned] = 1;
 		new Day, Month, Year;
 		getdate(Year, Month, Day);
-	    format(string, sizeof(string), "BAN:{FFFFFF} %s has been banned by %s", GetName(targetid), GetName(playerid));
+	    format(string, sizeof(string), "BAN:{FFFFFF} %s ha sido baneado por %s", GetName(targetid), GetName(playerid));
 		SendClientMessageToAll(COLOR_RED, string);
 		format(string, sizeof(string), "%s Banned - %04d/%02d/%02d", GetName(targetid), Year, Month, Day);
 		Log("/ZTDM/Logs/ban.txt", string);
@@ -3680,9 +3680,9 @@ CMD:banip(playerid, params[])
 	    if(sscanf(params, "s[16]", IP[playerid])) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /banip [IP]");
         format(string, sizeof(string), "banip %s", IP[playerid]);
 		SendRconCommand(string);
-	    format(string, sizeof(string), "INFO:{FFFFFF} You have successfully banned the IP '%s'", IP[playerid]);
+	    format(string, sizeof(string), "INFO:{FFFFFF} Has baneado con éxito la IP '%s'", IP[playerid]);
 	    SendClientMessage(playerid, COLOR_GREY, string);
-	    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has banned the IP %s.", GetName(playerid), IP[playerid]);
+	    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha baneado la IP %s.", GetName(playerid), IP[playerid]);
 	    MessageToAdmins(COLOR_RED, string);
 	    format(string, sizeof(string), "IP Ban: %s", IP[playerid]);
 	    Log("/ZTDM/Logs/IPBan.txt", string);
@@ -3700,7 +3700,7 @@ CMD:giveexp(playerid, params[])
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pScore] += amount;
 		SetPlayerScore(targetid, GetPlayerScore(targetid) + amount);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has gave you %d EXP points", GetName(playerid), amount);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s te ha dado %d EXP", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3714,18 +3714,18 @@ CMD:warn(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /warn [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is higher ranked Administrator than you.");
+		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese administrador tiene un rango más alto que el tuyo.");
 		PlayerInfo[targetid][pWarns]++;
-		format(string, sizeof(string), "WARN:{FFFFFF} Administrator %s has warned %s (%d/3)", GetName(playerid), GetName(targetid), PlayerInfo[targetid][pWarns]);
+		format(string, sizeof(string), "WARN:{FFFFFF} El administrador %s ha advertido a %s (%d/3)", GetName(playerid), GetName(targetid), PlayerInfo[targetid][pWarns]);
 		SendClientMessageToAll(COLOR_RED, string);
 		format(string, sizeof(string), "REASON:{FFFFFF} %s", reason);
 		SendClientMessageToAll(COLOR_RED, string);
 		if(PlayerInfo[targetid][pWarns] >= 3)
 		{
-			format(string, sizeof(string), "BAN:{FFFFFF} %s has been banned for reaching 3 warnings.", GetName(targetid));
+			format(string, sizeof(string), "BAN:{FFFFFF} %s ha sido baneado por alcanzar 3 advertencias.", GetName(targetid));
 			SendClientMessageToAll(COLOR_RED, string);
 			PlayerInfo[targetid][pBanned] = 1;
-			SendClientMessage(targetid, COLOR_RED, "BAN:{FFFFFF} You have been banned for reaching 3 warnings.");
+			SendClientMessage(targetid, COLOR_RED, "BAN:{FFFFFF} Has sido baneado por alcanzar 3 advertencias.");
 			SendClientMessage(targetid, COLOR_RED, "BAN:{FFFFFF} If you got banned for a wrong reason, please make an appeal on zanate.net/foro.");
 			KickPlayer(targetid);
 			GetPlayerIp(targetid, IP[playerid], 16);
@@ -3754,9 +3754,9 @@ CMD:fixveh(playerid, params[])
 	if(IsPlayerInAnyVehicle(playerid))
 	{
  		RepairVehicle(GetPlayerVehicleID(playerid));
- 		SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Your vehicle has been successfully repaired.");
+ 		SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Tu vehículo ha sido reparado con éxito.");
 	}
-	else SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You need to be in a vehicle to use that command");
+	else SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Necesitas estar en un vehículo para usar ese comando.");
     return 1;
 }
 
@@ -3767,8 +3767,8 @@ CMD:cc(playerid, params[])
 		new string[128];
 		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		ClearChat();
-		SendClientMessageToAll(yellow, "SERVER:{FFFFFF} Chat has been cleared by an Administrator");
-		format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has cleared the chat.", GetName(playerid));
+		SendClientMessageToAll(yellow, "SERVER:{FFFFFF} El chat ha sido limpiado por un administrador");
+		format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha limpiado el chat.", GetName(playerid));
 		MessageToAdmins(COLOR_RED, string);
 	}
 	return 1;
@@ -3789,9 +3789,9 @@ CMD:setexp(playerid, params[])
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pScore] = amount;
 		SetPlayerScore(targetid, amount);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your EXP points to %d.", GetName(playerid), amount);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu EXP a %d.", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's EXP to %d.", GetName(targetid), amount);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito la EXP de %s a %d.", GetName(targetid), amount);
 		SendClientMessage(playerid, COLOR_RED, string);
 	}
 	return 1;
@@ -3805,9 +3805,9 @@ CMD:unwarn(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params, "us[128]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /unwarn [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador es un administrador con más rango.");
+		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese administrador tiene un rango más alto que el tuyo..");
         PlayerInfo[targetid][pWarns]--;
-		format(string, sizeof(string), "WARN:{FFFFFF} Administrator %s has unwarned %s (%d/3)", GetName(playerid), GetName(targetid), PlayerInfo[targetid][pWarns]);
+		format(string, sizeof(string), "WARN:{FFFFFF} El administrador %s ha removido la advertencia a %s (%d/3)", GetName(playerid), GetName(targetid), PlayerInfo[targetid][pWarns]);
 		SendClientMessageToAll(COLOR_RED, string);
 		format(string, sizeof(string), "REASON:{FFFFFF} %s", reason);
 		SendClientMessageToAll(COLOR_RED, string);
@@ -3824,9 +3824,9 @@ CMD:sethealth(playerid, params[])
 	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /sethealth [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 	    SetPlayerHealth(targetid, amount);
-	    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's health to %d.", GetName(targetid), amount);
+	    format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito la vida de %s a %d.", GetName(targetid), amount);
 	    SendClientMessage(playerid, COLOR_RED, string);
-	    format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your health to %d.", GetName(playerid), amount);
+	    format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu vida a %d.", GetName(playerid), amount);
 	    SendClientMessage(targetid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3841,9 +3841,9 @@ CMD:setarmour(playerid, params[])
 	    if(sscanf(params, "ui", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setarmour [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 	    SetPlayerArmour(targetid, amount);
-	    format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's armour to %d.", GetName(targetid), amount);
+	    format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito la armadura de %s a %d.", GetName(targetid), amount);
 	    SendClientMessage(playerid, COLOR_RED, string);
-	    format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your armour to %d.", GetName(playerid), amount);
+	    format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu armadura a %d.", GetName(playerid), amount);
 	    SendClientMessage(targetid, COLOR_GREY, string);
 	}
 	return 1;
@@ -3858,9 +3858,9 @@ CMD:setkills(playerid, params[])
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setkills [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pKills] = amount;
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your kills to %d.", GetName(playerid), amount);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tus asesinatos a %d.", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's kills to %d.", GetName(targetid), amount);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito los asesinatos de %s a %d.", GetName(targetid), amount);
 		SendClientMessage(playerid, COLOR_RED, string);
 	}
 	return 1;
@@ -3875,9 +3875,9 @@ CMD:setdeaths(playerid, params[])
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setdeaths [playerid] [amount]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		PlayerInfo[targetid][pDeaths] = amount;
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set your deaths to %d.", GetName(playerid), amount);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tus muertes a %d.", GetName(playerid), amount);
 		SendClientMessage(targetid, COLOR_GREY, string);
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s's deaths to %d.", GetName(targetid), amount);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito las muertes de %s a %d.", GetName(targetid), amount);
 		SendClientMessage(playerid, COLOR_RED, string);
 	}
 	return 1;
@@ -3910,9 +3910,9 @@ CMD:unbanip(playerid, params[])
 	    if(sscanf(params, "s[16]", IP[playerid])) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /unbanip [IP]");
         format(string, sizeof(string), "unbanip %s", IP[playerid]);
 		SendRconCommand(string);
-	    format(string, sizeof(string), "INFO:{FFFFFF} You have successfully unbanned the ip '%s'", IP[playerid]);
+	    format(string, sizeof(string), "INFO:{FFFFFF} Has desbaneado con éxito la IP '%s'", IP[playerid]);
 	    SendClientMessage(playerid, COLOR_GREY, string);
-	    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has unbanned the IP %s.", GetName(playerid), IP[playerid]);
+	    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha desbaneado la IP %s.", GetName(playerid), IP[playerid]);
 	    MessageToAdmins(COLOR_RED, string);
 	    format(string, sizeof(string), "IP unban: %s", IP[playerid]);
 	    Log("/ZTDM/Logs/IPUnban.txt", string);
@@ -3932,7 +3932,7 @@ CMD:blowup(playerid, params[])
 		{
 	    	GetPlayerPos(targetid, x, y, z);
 	    	CreateExplosion(x, y, z, 7, 10.0);
-	    	format(str, sizeof(str),"AdmCmd:{FFFFFF} You have succesfully blown up %s!", GetName(targetid));
+	    	format(str, sizeof(str),"AdmCmd:{FFFFFF} ¡Has explotado con éxito a %s!", GetName(targetid));
 	     	SendClientMessage(playerid, COLOR_RED, str);
 		}
 	}
@@ -3949,9 +3949,9 @@ CMD:blowup(playerid, params[])
 		if(sscanf(params,"us[128]", targetid, name)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /changename [playerid] [name]");
   		format(exists, sizeof(exists), "/CSW/Users/%s.ini", name);
 		if(fexist(exists)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That name is already taken.");
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully changed %s's name to %s.", GetName(targetid), name);
+		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito el nombre de %s a %s.", GetName(targetid), name);
 		SendClientMessage(playerid, COLOR_RED, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has changed your name to %s.", GetName(playerid), name);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu nombre a %s.", GetName(playerid), name);
 		SendClientMessage(targetid, COLOR_GREY, string);
 		SetPlayerName(targetid, name);
 		new INI:File = INI_Open(UserPath(targetid));
@@ -3978,16 +3978,16 @@ CMD:makeadmin(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /makeadmin [playerid] [adminrank]");
 	    if(targetid == INVALID_PLAYER_ID) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-		if(amount > 5) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 0-5.");
-		if(amount < 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Invalid Administrator Level.");
+		if(amount > 5) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Solo puedes escoger de 0-5.");
+		if(amount < 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Nivel de administrador inválido.");
 	    else
 		{
-			format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has set %s's administrator level to %d.", GetName(playerid), GetName(targetid), amount);
+			format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha cambiado el nivel de administrador de %s a %d.", GetName(playerid), GetName(targetid), amount);
 			MessageToAdmins(COLOR_RED, string);
 			PlayerInfo[targetid][pAdmin] = amount;
-		    format(string, sizeof(string), "INFO:{FFFFFF} %s has made you level %d Administrator.", GetName(playerid), amount);
+		    format(string, sizeof(string), "INFO:{FFFFFF} %s te ha hecho administrador nivel %d.", GetName(playerid), amount);
 			SendClientMessage(targetid, COLOR_GREY, string);
-			format(string, sizeof(string), "MAKE-ADMIN: %s has made %s a level %i adminstrator.", GetName(playerid), GetName(targetid), amount);
+			format(string, sizeof(string), "MAKE-ADMIN: %s ha hecho a %s un administrador nivel %i.", GetName(playerid), GetName(targetid), amount);
 			Log("/ZTDM/Logs/administration.txt", string);
 		}
 	}
@@ -4002,24 +4002,24 @@ CMD:makeleader(playerid, params[])
 	    if(PlayerInfo[playerid][pAdmin] < 5) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 	    if(sscanf(params, "ud", targetid, amount)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /makeleader [playerid] [clanid]");
 	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
-        if(PlayerInfo[targetid][pClan] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is already a member of a clan.");
-		if(PlayerInfo[targetid][pClLeader] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} That player is already a leader of a clan.");
-		if(amount > 6) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} You can only choose from 1-6.");
-		if(amount < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} You can only choose from 1-6.");
+        if(PlayerInfo[targetid][pClan] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador ya es miembro de un clan.");
+		if(PlayerInfo[targetid][pClLeader] != 0) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador ya es líder de un clan..");
+		if(amount > 6) return SendClientMessage(playerid, COLOR_RED,"ERROR:{FFFFFF} Solo puedes escoger de 1-6.");
+		if(amount < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Solo puedes escoger de 1-6.");
 		else
 		{
-		    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s has set %s as a leader of clan ID %d.", GetName(playerid), GetName(targetid), amount);
+		    format(string, sizeof(string), "AdmWarn:{FFFFFF} %s ha hecho a %s líder del clan ID %d.", GetName(playerid), GetName(targetid), amount);
 		    MessageToAdmins(COLOR_RED, string);
 			format(ClanInfo[amount-1][cLeader], 128, "%s", GetName(targetid));
 			ClanInfo[amount-1][cMembers]++;
 			PlayerInfo[targetid][pClan] = amount;
    			PlayerInfo[targetid][pClRank] = 6;
 			SaveClan(PlayerInfo[targetid][pClan]-1);
-   			format(string, sizeof(string), "AdmCmd:{FFFFFF} You have successfully set %s as leader of clan ID %d.", GetName(targetid), amount);
+   			format(string, sizeof(string), "AdmCmd:{FFFFFF} Has hecho con éxito a %s líder del clan ID %d.", GetName(targetid), amount);
    			SendClientMessage(playerid, COLOR_RED, string);
-   			format(string, sizeof(string), "INFO:{FFFFFF} Administrator %s has set you as leader of clan ID %d.", GetName(playerid), amount);
+   			format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s te ha hecho líder del clan ID %d.", GetName(playerid), amount);
    			SendClientMessage(targetid, COLOR_GREY, string);
-			format(string, sizeof(string), "CL-LEADER: %s has made %s as leader of ID %d.", GetName(playerid), GetName(targetid), amount);
+			format(string, sizeof(string), "CL-LEADER: %s ha hecho %s el líder del clan ID %d.", GetName(playerid), GetName(targetid), amount);
 			Log("/ZTDM/Logs/ClanLeadership.txt", string);
 		}
 	}
