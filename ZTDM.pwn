@@ -107,6 +107,8 @@
 #define DIALOG_CLWEP3 28
 #define DIALOG_CLWEP4 29
 #define DIALOG_CLSPAWN 30
+#define DIALOG_CHANGEPASS 31
+#define DIALOG_NEWPASS 32
 
 
 /* Teams */
@@ -123,18 +125,18 @@
 
 /* Host */
 
-/*
+
 #define host "localhost"
 #define user "root"
 #define db "samp"
 #define pass ""
-*/
 
+/*
 #define host "96.126.114.6"
 #define user "SAMP"
 #define db "samp"
 #define pass "sanandreas"
-
+*/
 
 static
     mysql,
@@ -1885,6 +1887,38 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        SaveClan(PlayerInfo[playerid][pClan]-1);
             SendClientMessage(playerid, COLOR_GREEN, "CLAN: Posición de Spawn cambiada con éxito.");
         }
+	}
+    else if(dialogid == DIALOG_CHANGEPASS)
+	{
+     if(!response) return 1;
+	    else if(response)
+	    {
+	        new npass[129], password[129];
+            WP_Hash(npass, 129, inputtext);
+			cache_get_field_content(0, "Password", password);
+			printf("***********************---***************************");
+			printf(password);
+      		if(!strcmp(npass, password))
+       		{
+       		    ShowPlayerDialog(playerid, DIALOG_NEWPASS, DIALOG_STYLE_PASSWORD, "Cambio de Contraseña", "{FFFFFF}Escribe tu nueva contraseña:", "Confirmar", "Salir");
+		   	}
+		   	else
+		   	{
+		   	    SendClientMessage(playerid, COLOR_RED, "ERROR: Contraseña equivocada.");
+		   	}
+        }
+	}
+    else if(dialogid == DIALOG_NEWPASS)
+	{
+     if(!response) return SendClientMessage(playerid, COLOR_RED, "ERROR: Contraseña vacía, no hubo cambios.");
+	    else if(response)
+	    {
+			if(strlen(inputtext) < 5) { return ShowPlayerDialog(playerid, DIALOG_NEWPASS, DIALOG_STYLE_PASSWORD, "Error", "{FFFFFF}Tu contraseña debe incluir más de 5 caracteres:", "Confirmar", "Salir"); }
+            WP_Hash(PlayerInfo[playerid][pPass], 129, inputtext);
+            mysql_format(mysql, query, sizeof(query), "UPDATE `users` SET `Password`= '%s' WHERE `Username` = '%e' LIMIT 1", PlayerInfo[playerid][pPass], Name[playerid]);
+        	mysql_tquery(mysql, query, "", "");
+            SendClientMessage(playerid, COLOR_GREEN, "INFO: Contraseña modificada.");
+		}
 	}
 	return 1;
 }
@@ -4526,6 +4560,15 @@ CMD:ranks(playerid, params[])
 		ShowPlayerDialog(playerid, DIALOG_RANKS, DIALOG_STYLE_MSGBOX, "Rangos", ranks, "Okay", "");
 	}
 	return 1;
+}
+
+CMD:changepass(playerid, params[])
+{
+	if(Logged[playerid] == 1)
+	{
+	    ShowPlayerDialog(playerid, DIALOG_CHANGEPASS, DIALOG_STYLE_PASSWORD, "Cambio de Contraseña", "{FFFFFF}Has solicitado un cambio de contraseña\nEscribe tu contraseña actual para confirmar tu cambio.", "Confirmar", "Salir");
+    }
+    return 1;
 }
 
 CMD:cmds(playerid, params[])
