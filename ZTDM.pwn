@@ -10,7 +10,7 @@
 |________/ \_______/|__/  |__/ \_______/   \___/   \_______/         |__/   |_______/ |__/     |__/
 
 
-================================            VERSION 0.9b            ================================
+================================            VERSION 1.10b            ================================
 
 
 */
@@ -27,7 +27,7 @@
 #include <mSelection>
 #include <vending>
 
-#define version     "Zanate TDM v0.9b"
+#define version     "Zanate TDM v1.10b"
 #define function%1(%2) 		forward%1(%2); public%1(%2)
 
 
@@ -41,6 +41,7 @@
 #define COL_RED "{F81414}"
 #define COL_GREEN "{00FF22}"
 #define COLOR_LIGHTBLUE 0x006FDD96
+#define COLOR_BLACK 0x00000000
 #define COLOR_GREY 0xAFAFAFAA
 #define COLOR_FADE 0xC8C8C8C8
 #define COLOR_PURPLE 0xC2A2DAAA
@@ -109,6 +110,7 @@
 #define DIALOG_CLSPAWN 30
 #define DIALOG_CHANGEPASS 31
 #define DIALOG_NEWPASS 32
+#define DIALOG_CLASS 33
 
 
 /* Teams */
@@ -125,18 +127,18 @@
 
 /* Host */
 
-
+/*
 #define host "localhost"
 #define user "root"
 #define db "samp"
 #define pass ""
+*/
 
-/*
 #define host "96.126.114.6"
 #define user "SAMP"
 #define db "samp"
 #define pass "sanandreas"
-*/
+
 
 static
     mysql,
@@ -151,7 +153,7 @@ native IsValidVehicle(vehicleid);
 enum pInfo
 {
 	pID,
-	pPass,
+	pPass[129],
 	pMoney,
 	pAdmin,
 	pVip,
@@ -174,7 +176,8 @@ enum pInfo
 	pInvited,
 	pInviting,
 	pSkin,
-	pGod
+	pGod,
+	pClass
 }
 new PlayerInfo[MAX_PLAYERS][pInfo];
 
@@ -283,7 +286,7 @@ new randomMessages[][] =
   	"{D37400}SERVER:{FFFFFF} Visita nuestro website para mantenerte al tanto del servidor: zanate.net.",
    	"{D37400}SERVER:{FFFFFF} ¿Un hacker? Usa /report para enviar un reporte a los administradores, o haz una publicación en los foros.",
     "{D37400}SERVER:{FFFFFF} Usa /updates para saber qué ha cambiado en el servidor.",
-    "{D37400}SERVER:{FFFFFF} /credits para mirar quiénes contribuyeron al desarrollo de este servidor.",
+    "{D37400}SERVER:{FFFFFF} Usa /credits para mirar quiénes contribuyeron al desarrollo de este servidor.",
 	"{D37400}SERVER:{FFFFFF} Romper las reglas te dará mala reputación y recibirás una penalización.",
     "{D37400}SERVER:{FFFFFF} ¿Tienes una sugerencia o encontraste un bug? Repórtalo/sugiérelo en zanate.net/foro",
     "{D37400}SERVER:{FFFFFF} Revisa zanate.net para ver qué otros juegos están disponibles en nuestro servidor.",
@@ -626,6 +629,7 @@ public OnPlayerConnect(playerid)
 	PlayerInfo[playerid][pInviting] = 0;
 	PlayerInfo[playerid][pSkin] = 0;
 	PlayerInfo[playerid][pGod] = 0;
+	PlayerInfo[playerid][pClass] = 0;
 	SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 
 	/* Login screen */
@@ -662,6 +666,7 @@ public OnPlayerSpawn(playerid)
 	new string[128];
 	ResetPlayerWeapons(playerid);
 	Spawned[playerid] = 1;
+    ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
 	SetPlayerHealth(playerid, 10000.0);
 	SendClientMessage(playerid, orange, "ANTI SPAWN KILL:{FFFFFF} Tienes 5 segundos de protección Anti Spawn Kill.");
     SetPlayerChatBubble(playerid, "Protección Anti Spawn Kill", COLOR_RED, 100.0, 5000);
@@ -673,8 +678,8 @@ public OnPlayerSpawn(playerid)
         PlayerInfo[playerid][pSkin] = GetPlayerSkin(playerid);
 		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep1], 1);
 		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep2], 150);
-		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3], 300);
-		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4], 350);
+		/*GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep3], 300);
+		GivePlayerWeapon(playerid, ClanInfo[PlayerInfo[playerid][pClan]-1][cWep4], 350);*/
 		if(MOTD[playerid] == 0)
 	    {
 			format(string, sizeof(string), "CL-MOTD:{FFFFFF} %s", ClanInfo[PlayerInfo[playerid][pClan]-1][cMOTD]);
@@ -708,42 +713,42 @@ public OnPlayerSpawn(playerid)
 	else if(gTeam[playerid] == TEAM_GROVE)
 	{
 	    SetPlayerColor(playerid, 0x33AA33AA);
-	    GivePlayerWeapon(playerid, 5, 1);
+	    /*GivePlayerWeapon(playerid, 5, 1);
 	    GivePlayerWeapon(playerid, 24, 150);
 	    GivePlayerWeapon(playerid, 25, 100);
-	    GivePlayerWeapon(playerid, 31, 250);
+	    GivePlayerWeapon(playerid, 31, 250);*/
 	}
 	else if(gTeam[playerid] == TEAM_BALLAS)
 	{
 	    SetPlayerColor(playerid, 0xC2A2DAAA);
-	    GivePlayerWeapon(playerid, 5, 1);
+	    /*GivePlayerWeapon(playerid, 5, 1);
 	    GivePlayerWeapon(playerid, 24, 150);
 	    GivePlayerWeapon(playerid, 25, 100);
-	    GivePlayerWeapon(playerid, 29, 250);
+	    GivePlayerWeapon(playerid, 29, 250);*/
 	}
 	else if(gTeam[playerid] == TEAM_VAGOS)
 	{
 	    SetPlayerColor(playerid, 0xFFFF00AA);
-	    GivePlayerWeapon(playerid, 4, 1);
+	    /*GivePlayerWeapon(playerid, 4, 1);
 	    GivePlayerWeapon(playerid, 24, 150);
 	    GivePlayerWeapon(playerid, 25, 100);
-	    GivePlayerWeapon(playerid, 31, 250);
+	    GivePlayerWeapon(playerid, 31, 250);*/
 	}
 	else if(gTeam[playerid] == TEAM_AZTECAS)
 	{
 	    SetPlayerColor(playerid, 0x33CCFFAA);
-	    GivePlayerWeapon(playerid, 5, 1);
+	    /*GivePlayerWeapon(playerid, 5, 1);
 	    GivePlayerWeapon(playerid, 24, 150);
 	    GivePlayerWeapon(playerid, 25, 100);
-	    GivePlayerWeapon(playerid, 30, 250);
+	    GivePlayerWeapon(playerid, 30, 250);*/
 	}
 	else if(gTeam[playerid] == TEAM_POLICE)
 	{
 	    SetPlayerColor(playerid, 0x0000BBAA);
-	    GivePlayerWeapon(playerid, 3, 1);
+	    /*GivePlayerWeapon(playerid, 3, 1);
 	    GivePlayerWeapon(playerid, 24, 150);
 	    GivePlayerWeapon(playerid, 25, 100);
-	    GivePlayerWeapon(playerid, 31, 250);
+	    GivePlayerWeapon(playerid, 31, 250);*/
 	}
 	else if(PlayerInfo[playerid][pColor] == 1)
 	{
@@ -761,7 +766,12 @@ public OnPlayerDeath(playerid, killerid, reason)
 	new string[128];
 	SendDeathMessage(killerid, playerid, reason);
 	SendClientMessage(killerid, COLOR_RED, "{00FF22}KILL:{FFFFFF} ¡Has matado a un enemigo! +1 exp y $500");
-	format(string, sizeof(string), "DEATH:{FFFFFF} Has sido asesinado por %s, - 300$.", GetName(killerid));
+	if (reason <= 42) {
+		format(string, sizeof(string), "MUERTE:{FFFFFF} Has sido asesinado por %s, - 300$.", GetName(killerid));
+	}
+	else {
+	    format(string, sizeof(string), "MUERTE:{FFFFFF} Has muerto - 300$", GetName(killerid));
+	}
 	SendClientMessage(playerid, COLOR_RED, string);
 	PlayerPlaySound(killerid, 1057, 0, 0, 0);
 	PlayerInfo[playerid][pDeaths]++;
@@ -770,8 +780,8 @@ public OnPlayerDeath(playerid, killerid, reason)
     SetPlayerScore(killerid, GetPlayerScore(killerid) + 1);
 	GivePlayerMoney(killerid, 500);
     PlayerInfo[killerid][pMoney] += 500;
+    PlayerInfo[playerid][pMoney] -= 300;
 	GivePlayerMoney(playerid, -300);
-	PlayerInfo[playerid][pMoney] -= 300;
     //GivePlayerMoney(playerid, 100);
 	KillStreak[killerid]++;
 	KillStreak[playerid] = 0;
@@ -1043,10 +1053,73 @@ stock IsValidVehicleModel(vehicleid)
 	}
 	else { return 0; }
 }
-stock checkIfUsernameExists(name)
+stock givePlayerClass(playerid, classnumber)
 {
-    mysql_format(mysql, query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%e' LIMIT 1", );
-    mysql_tquery(mysql, query, "", "");
+    switch (classnumber)
+	{
+		case 0:
+		{
+		    PlayerInfo[playerid][pClass] = 0;
+		    GivePlayerWeapon(playerid, 22, 400);
+		    GivePlayerWeapon(playerid, 25, 70);
+		    GivePlayerWeapon(playerid, 29, 400);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un soldado. No tienes comandos especiales.");
+		}
+		case 1:
+		{
+		    PlayerInfo[playerid][pClass] = 1;
+		    GivePlayerWeapon(playerid, 34, 120);
+		    GivePlayerWeapon(playerid, 28, 400);
+		    GivePlayerWeapon(playerid, 25, 100);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un sniper. No tienes comandos especiales.");
+		}
+        case 2:
+		{
+		    PlayerInfo[playerid][pClass] = 2;
+		    GivePlayerWeapon(playerid, 34, 120);
+		    GivePlayerWeapon(playerid, 28, 400);
+		    GivePlayerWeapon(playerid, 25, 100);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un kamikaze. Escribe /boom para explotar.");
+		}
+		case 3:
+		{
+		    PlayerInfo[playerid][pClass] = 3;
+		    GivePlayerWeapon(playerid, 31, 200);
+		    GivePlayerWeapon(playerid, 28, 300);
+		    GivePlayerWeapon(playerid, 24, 70);
+		    GivePlayerWeapon(playerid, 16, 4);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un soldado de infantería. No tienes comandos especiales.");
+		}
+		case 4:
+		{
+		    PlayerInfo[playerid][pClass] = 4;
+		    GivePlayerWeapon(playerid, 30, 210);
+		    GivePlayerWeapon(playerid, 23, 120);
+		    GivePlayerWeapon(playerid, 4, 1);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un espía. Usa /spy para infiltrarte a otro equipo.");
+		}
+        case 5:
+		{
+		    PlayerInfo[playerid][pClass] = 5;
+		    GivePlayerWeapon(playerid, 24, 110);
+		    GivePlayerWeapon(playerid, 27, 120);
+		    GivePlayerWeapon(playerid, 4, 1);
+		    GivePlayerWeapon(playerid, 29, 140);
+		    GivePlayerWeapon(playerid, 33, 60);
+	     	SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un piloto. Puedes montarte en aviones y helicópteros.");
+		}
+        case 6:
+		{
+		    PlayerInfo[playerid][pClass] = 6;
+		    GivePlayerWeapon(playerid, 24, 120);
+		    GivePlayerWeapon(playerid, 27, 120);
+		    GivePlayerWeapon(playerid, 4, 1);
+		    GivePlayerWeapon(playerid, 29, 140);
+		    GivePlayerWeapon(playerid, 31, 250);
+		    SendClientMessage(playerid, COLOR_GREY, "INFO:{FFFFFF} Eres un ingeniero. Puedes usar tanques y Hunters.");
+		}
+	}
+	return 1;
 }
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
@@ -1065,7 +1138,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(response)
 			{
    				if(strlen(inputtext) < 5) return ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "ZANATE", "{F81414}ERROR:{FFFFFF} La contraseña debe tener mínimo cinco caracteres.\nEscribe tu contraseña deseada para registrarte.", "Registrar", "Salir");
-	     		WP_Hash(PlayerInfo[playerid][pPass], 129, inputtext);
+        		WP_Hash(PlayerInfo[playerid][pPass], 129, inputtext);
 				new thequery[MAX_PLAYERS];
 				thequery = "INSERT INTO `users` (`Username`, `Password`, `IP`, `Money`, `Admin`, `Vip`, `Kills` ,`Deaths`, `Score`, `Rank`, `Banned`, `Warns`, `VW`, `Interior`, `Min`, `Hours`, `PM`, `Color`, `Turfs`, `Clan`, `ClRank`, `ClLeader`, `Invited`, `Inviting`, `Skin`, `RegisterDate`, `LastLogin`) VALUES ('%e', '%s', '%s', 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '%s', 0)";
 	     		mysql_format(mysql, query, sizeof(query), thequery, Name[playerid], PlayerInfo[playerid][pPass], IP[playerid], getCurrentDate());
@@ -1305,6 +1378,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    strcat(acmds, "{00FF22}/unban{FFFFFF} - Desbanea un jugador.\n", sizeof(acmds));
 				    strcat(acmds, "{00FF22}/unbanip{FFFFFF} - Desbanea una IP.\n", sizeof(acmds));
 				    strcat(acmds, "{00FF22}/blowup{FFFFFF} - Explota a un jugador.\n", sizeof(acmds));
+				    strcat(acmds, "{00FF22}/setclass{FFFFFF} - Cambia la clase de un jugador.\n", sizeof(acmds));
 				    strcat(acmds, "{00FF22}/changename{FFFFFF} - Cambia el nombre de un jugador.\n", sizeof(acmds));
 				    ShowPlayerDialog(playerid, DIALOG_ACMDS2, DIALOG_STYLE_MSGBOX, "Head Admin", acmds, "Okay", "");
 				}
@@ -1893,12 +1967,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
      if(!response) return 1;
 	    else if(response)
 	    {
-	        new npass[129], password[129];
-            WP_Hash(npass, 129, inputtext);
-			cache_get_field_content(0, "Password", password);
-			printf("***********************---***************************");
-			printf(password);
-      		if(!strcmp(npass, password))
+	        new npass[129];
+	        WP_Hash(npass, 129, inputtext);
+      		if(!strcmp(npass, PlayerInfo[playerid][pPass]))
        		{
        		    ShowPlayerDialog(playerid, DIALOG_NEWPASS, DIALOG_STYLE_PASSWORD, "Cambio de Contraseña", "{FFFFFF}Escribe tu nueva contraseña:", "Confirmar", "Salir");
 		   	}
@@ -1917,7 +1988,100 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             WP_Hash(PlayerInfo[playerid][pPass], 129, inputtext);
             mysql_format(mysql, query, sizeof(query), "UPDATE `users` SET `Password`= '%s' WHERE `Username` = '%e' LIMIT 1", PlayerInfo[playerid][pPass], Name[playerid]);
         	mysql_tquery(mysql, query, "", "");
+        	new logging[MAX_PLAYERS];
+        	format(logging, sizeof(string), "%s Cambio de Contraseña - %s", GetName(playerid), getCurrentDate());
+			Log("/ZTDM/Logs/passchange.txt", logging);
             SendClientMessage(playerid, COLOR_GREEN, "INFO: Contraseña modificada.");
+		}
+	}
+	else if(dialogid == DIALOG_CLASS)
+	{
+	    if(!response)
+		{
+            SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Tienes que seleccionar una clase.");
+			return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+		}
+		else if(response)
+	    {
+	        switch(listitem)
+	        {
+	            case 0:
+	            {
+	                givePlayerClass(playerid, 0);
+				}
+				case 1:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 2)
+					{
+					    givePlayerClass(playerid, 1);
+					}
+					else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango II para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+				}
+				case 2:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 4)
+					{
+					    givePlayerClass(playerid, 2);
+					}
+					else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango IV para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+				}
+				case 3:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 6)
+					{
+					    givePlayerClass(playerid, 3);
+     				}
+                    else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango VI para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+     			}
+				case 4:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 8)
+					{
+				    	givePlayerClass(playerid, 4);
+					}
+                    else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango VIII para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+				}
+				case 5:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 10)
+					{
+				    	givePlayerClass(playerid, 5);
+					}
+                    else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango X para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+				}
+				case 6:
+				{
+				    if(PlayerInfo[playerid][pRank] >= 12)
+					{
+				    	givePlayerClass(playerid, 6);
+					}
+                    else
+					{
+					    SendClientMessage(playerid, COLOR_GREY, "ERROR:{FFFFFF} Necesitas ser rango XII para seleccionar esta clase.");
+                        return ShowPlayerDialog(playerid, DIALOG_CLASS, DIALOG_STYLE_LIST, "Selección de Clase:", "Soldado\nSniper\nKamikaze\nInfantería\nEspía\nPiloto\nIngeniero", "Seleccionar", "");
+					}
+				}
+			}
 		}
 	}
 	return 1;
@@ -2435,7 +2599,7 @@ public LoggingTimer(playerid)
     InterpolateCameraPos(playerid, -1781.663330, 428.006164, 77.410369, -1162.017089, 1080.103393, 77.418640, 40000);
 	InterpolateCameraLookAt(playerid, -1778.375610, 431.433624, 75.847175, -1158.807495, 1083.449462, 75.547363, 40000);
 	SendClientMessage(playerid, yellow, "Servidor:{FFFFFF} Zanate TDM.");
-	SendClientMessage(playerid, yellow, "Versión:{FFFFFF} 0.9 Beta");
+	SendClientMessage(playerid, yellow, "Versión:{FFFFFF} 0.10 Beta");
 	SendClientMessage(playerid, yellow, "Comunidad:{FFFFFF} Zanate Gaming");
 	SendClientMessage(playerid, yellow, "Website:{FFFFFF} zanate.net/foro");
     return 1;
@@ -2569,6 +2733,21 @@ public OnAccountCheck(playerid)
     	ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Zanate TDM", "{FFFFFF} Bienvenido a {F81414}Zanate TDM!{FFFFFF}\nEscribe la contraseña deseada para registrarte. ", "Register", "Quit");
     }
     return 1;
+}
+
+forward UsernameCheck(playerid);
+public UsernameCheck(playerid)
+{
+    new rows, fields;
+    cache_get_data(rows, fields, mysql);
+    if(rows)
+    {
+        return 1;
+    }
+    else
+    {
+    	return 0;
+    }
 }
 
 
@@ -2811,6 +2990,12 @@ public RankBonus(playerid)
         GivePlayerWeapon(playerid, 27, 150);
 	}
 	else if(PlayerInfo[playerid][pRank] == 11)
+	{
+	    SetPlayerArmour(playerid, 100);
+        GivePlayerWeapon(playerid, 27, 200);
+        GivePlayerWeapon(playerid, 31, 300);
+	}
+	else if(PlayerInfo[playerid][pRank] == 12)
 	{
 	    SetPlayerArmour(playerid, 100);
         GivePlayerWeapon(playerid, 27, 200);
@@ -3943,6 +4128,7 @@ CMD:ban(playerid, params[])
 		if(sscanf(params,"us[60]", targetid, reason)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /ban [playerid] [reason]");
 		if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
 		if(PlayerInfo[targetid][pAdmin] > PlayerInfo[playerid][pAdmin]) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese administrador tiene un rango más alto que el tuyo.");
+		if (playerid == targetid) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No puedes banearte a tí mismo.");
 		PlayerInfo[targetid][pBanned] = 1;
 		new Day, Month, Year;
 		getdate(Year, Month, Day);
@@ -4314,29 +4500,66 @@ CMD:giveweapon(playerid, params[])
 }
 
 
-/*CMD:changename(playerid, params[])
+CMD:changename(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-		new targetid, string[128], name[28], exists[64];
+		new targetid, query[1024], string[128],oldname[128], name[28];
 		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
 		if(sscanf(params,"us[128]", targetid, name)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /changename [playerid] [name]");
 
-		if(fexist(exists)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese nombre ya existe.");
-		format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito el nombre de %s a %s.", GetName(targetid), name);
-		SendClientMessage(playerid, COLOR_RED, string);
-		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu nombre a %s.", GetName(playerid), name);
-		SendClientMessage(targetid, COLOR_GREY, string);
-		SetPlayerName(targetid, name);
-		new INI:File = INI_Open(UserPath(targetid));
- 		INI_SetTag(File,"data");
-		INI_WriteInt(File,"Password",PlayerInfo[targetid][pPass]);
-		INI_Close(File);
-		
+
+		mysql_format(mysql, query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%e' LIMIT 1", name);
+    	mysql_format(mysql, query, sizeof(query),"SELECT `Password`, `ID` FROM `users` WHERE `Username` = '%e' LIMIT 1", Name[playerid]);
+    	if(mysql_tquery(mysql, query, "UsernameCheck", "s", playerid) == 1)
+		{
+			return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese nombre ya existe.");
+		}
+		else
+		{
+		    oldname = GetName(targetid);
+		    switch(SetPlayerName(playerid, name))
+    			{
+					case -1:
+					{
+                        return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese nombre ya existe.");
+                        
+					}
+					case 0:
+			        {
+						return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El nuevo nombre es igual al anterior.");
+					}
+			        case 1:
+					{
+					    mysql_format(mysql, query, sizeof(query), "UPDATE `users` SET `Username`= '%e' WHERE `Username` = '%e' LIMIT 1", Name[playerid], oldname);
+        				mysql_tquery(mysql, query, "", "");
+					    format(string, sizeof(string), "AdmCmd:{FFFFFF} Has cambiado con éxito el nombre de %s a %s.", oldname, name);
+						SendClientMessage(targetid, COLOR_GREY, string);
+						format(string, sizeof(string), "CHANGE-NAME:{FFFFFF} %s cambió el nombre de %s a %s. - %s", GetName(playerid), oldname, name, getCurrentDate());
+						Log("/ZTDM/Logs/namechange.txt", string);
+						format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu nombre a %s.", GetName(playerid), name);
+						return SendClientMessage(playerid, COLOR_RED, string);
+					}
+			    }
+		}
 	}
 	return 1;
-}*/
+}
 
+CMD:setclass(playerid, params[])
+{
+	if(Logged[playerid] == 1)
+	{
+		new targetid, classid, string[128];
+		if(PlayerInfo[playerid][pAdmin] < 4) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} No estás autorizado para usar este comando.");
+	    if(sscanf(params, "ud", targetid, classid)) return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /setclass [playerid] [classid]");
+	    if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El jugador no está en línea.");
+		givePlayerClass(targetid, classid);
+		format(string, sizeof(string), "INFO:{FFFFFF} El administrador %s ha cambiado tu clase a %d.", GetName(playerid), classid);
+		return SendClientMessage(playerid, COLOR_RED, string);
+	}
+	return 1;
+}
 
 
 
@@ -4517,7 +4740,7 @@ CMD:credits(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-	    ShowPlayerDialog(playerid, DIALOG_CREDITS, DIALOG_STYLE_MSGBOX, "Créditos", "{e1c214}Drulutz{FFFFFF} - Scripting y modificación.\n{e1c214}Autist{FFFFFF} - Traducción.\n{e1c214}Basado en:{FFFFFF} GangWars por Blast3r", "Okay", "");
+	    ShowPlayerDialog(playerid, DIALOG_CREDITS, DIALOG_STYLE_MSGBOX, "Créditos", "{e1c214}Drulutz{FFFFFF} - Scripting y modificación.\n{e1c214}Autist{FFFFFF} - Traducción.", "Okay", "");
 	}
 	return 1;
 }
@@ -4532,7 +4755,7 @@ CMD:rules(playerid, params[])
         strcat(rules, "{00FF22}Regla 3:{FFFFFF} Irrespetar a los demás jugadores NO está permitido.\n", sizeof(rules));
         strcat(rules, "{00FF22}Regla 4:{FFFFFF} Abusar de un bug NO está permitido, en caso de encontrar uno por favor reportarlo en zanate.net/foro.\n", sizeof(rules));
         strcat(rules, "{00FF22}Regla 5:{FFFFFF} Promocionar otro servidor te dará un ban permanente instantáneo.\n", sizeof(rules));
-        strcat(rules, "{00FF22}Regla 6:{FFFFFF} Do NOT Car Park and Heli Blade other players.\n", sizeof(rules));
+        strcat(rules, "{00FF22}Regla 6:{FFFFFF} No se puede hacer Car Park o Heli Blade.\n", sizeof(rules));
 		strcat(rules, "{00FF22}Regla 7:{FFFFFF} Comprar cosas con dinero real en el juego NO está permitido.. \n", sizeof(rules));
         strcat(rules, "{00FF22}Regla 8:{FFFFFF} La decisión de un administrador debe ser respetada, en caso de no estar de acuerdo con algo, repórtalo en el foro.\n", sizeof(rules));
 		ShowPlayerDialog(playerid, DIALOG_RULES, DIALOG_STYLE_MSGBOX, "Reglas", rules, "Aceptar", "No aceptar");
@@ -4776,6 +4999,11 @@ CMD:tc(playerid, params[])
 			    format(string, sizeof(string), "{9C9C8A}TEAM:{FFFFFF} %s: %s", GetName(playerid), text);
 				MessageToAztecas(yellow, string);
 			}
+			/*case TEAM_POLICE:
+			{
+			    format(string, sizeof(string), "{9C9C8A}TEAM:{FFFFFF} %s: %s", GetName(playerid), text);
+				MessageToPolice(yellow, string);
+			}*/
 		}
 	}
 	return 1;
@@ -4835,16 +5063,138 @@ CMD:vnos(playerid, params[])
 	return 1;
 }
 
-/*CMD:changepass(playerid, params[])
+CMD:kill(playerid, params[])
 {
 	if(Logged[playerid] == 1)
 	{
-		new query[1024];
-		mysql_format(mysql, query, sizeof(query), "UPDATE `clans` SET `Name`='%e', `Leader`='%s', `Members`=%d, `Skin`=%d, `MOTD`='%s', `Rank1`='%s', `Rank2`='%s', `Rank3`='%s', `Rank4`='%s', ",\
-	    ClanInfo[clanid][cName], ClanInfo[clanid][cLeader], ClanInfo[clanid][cMembers] , ClanInfo[clanid][cSkin], ClanInfo[clanid][cMOTD], ClanInfo[clanid][cRank1], ClanInfo[clanid][cRank2], ClanInfo[clanid][cRank3],\
-		ClanInfo[clanid][cRank4]);
+        SetPlayerHealth(playerid, 0);
 	}
-}*/
+	return 1;
+}
+
+CMD:boom(playerid, params[])
+{
+    if(Logged[playerid] == 1)
+	{
+        new Float:x, Float:y, Float:z;
+		if(PlayerInfo[playerid][pClass] != 2) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Tienes que ser un Kamikaze para usar este comando.");
+		else
+		{
+	    	GetPlayerPos(playerid, x, y, z);
+	    	CreateExplosion(x, y, z, 2, 15.0);
+	    	CreateExplosion(x, y, z, 2, 9.0);
+		}
+	}
+   	return 1;
+}
+
+CMD:spy(playerid, params[])
+{
+	if(Logged[playerid] == 1)
+	{
+		new team[32], string[128];
+		new randomSkin = random(3);
+	    if(PlayerInfo[playerid][pClass] != 4)
+		{
+			return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Necesitas ser un espía para usar este comando.");
+		}
+		if(sscanf(params, "s[24]", team))
+		{
+			return SendClientMessage(playerid, COLOR_GREY, "Uso:{FFFFFF} /spy [grove/ballas/vagos/aztecaz/police]");
+		}
+		if (!strcmp(team, "grove", true))
+		{
+		    SetPlayerColor(playerid, 0x33AA33AA);
+		    if (randomSkin == 0)
+			{
+                SetPlayerSkin(playerid, 105);
+			}
+			else if (randomSkin == 1)
+			{
+                SetPlayerSkin(playerid, 106);
+			}
+			else
+			{
+                SetPlayerSkin(playerid, 107);
+			}
+		    format(string, sizeof(string), "SPY:{FFFFFF} Estás haciéndote pasar por un miembro de Grove.");
+			SendClientMessage(playerid, COLOR_BLACK, string);
+		}
+		else if (!strcmp(team, "ballas", true))
+		{
+		    SetPlayerColor(playerid, 0xC2A2DAAA);
+		    if (randomSkin == 0)
+			{
+                SetPlayerSkin(playerid, 102);
+			}
+			else if (randomSkin == 1)
+			{
+                SetPlayerSkin(playerid, 103);
+			}
+			else
+			{
+                SetPlayerSkin(playerid, 104);
+			}
+		    format(string, sizeof(string), "SPY:{FFFFFF} Estás haciéndote pasar por un miembro de Ballas.");
+			SendClientMessage(playerid, COLOR_BLACK, string);
+		}
+		else if (!strcmp(team, "vagos", true))
+		{
+		    SetPlayerColor(playerid, 0xFFFF00AA);
+		    if (randomSkin == 0)
+			{
+                SetPlayerSkin(playerid, 108);
+			}
+			else if (randomSkin == 1)
+			{
+                SetPlayerSkin(playerid, 109);
+			}
+			else
+			{
+                SetPlayerSkin(playerid, 110);
+			}
+		    format(string, sizeof(string), "SPY:{FFFFFF} Estás haciéndote pasar por un miembro de los Vagos.");
+			SendClientMessage(playerid, COLOR_BLACK, string);
+		}
+		else if (!strcmp(team, "aztecaz", true))
+		{
+		    SetPlayerColor(playerid, 0x33CCFFAA);
+            if (randomSkin == 0)
+			{
+                SetPlayerSkin(playerid, 114);
+			}
+			else if (randomSkin == 1)
+			{
+                SetPlayerSkin(playerid, 115);
+			}
+			else
+			{
+                SetPlayerSkin(playerid, 116);
+			}
+		    format(string, sizeof(string), "SPY:{FFFFFF} Estás haciéndote pasar por un miembro de los Aztecaz.");
+			SendClientMessage(playerid, COLOR_BLACK, string);
+		}
+		else if (!strcmp(team, "police", true))
+		{
+		    SetPlayerColor(playerid, 0x0000BBAA);
+		    if (randomSkin == 0)
+			{
+                SetPlayerSkin(playerid, 280);
+			}
+			else if (randomSkin == 1)
+			{
+                SetPlayerSkin(playerid, 281);
+			}
+			else
+			{
+                SetPlayerSkin(playerid, 282);
+			}
+		    format(string, sizeof(string), "SPY:{FFFFFF} Estás haciéndote pasar por un miembro de la Policía.");
+			SendClientMessage(playerid, COLOR_BLACK, string);
+  		}
+	}
+    return 1;
+}
 
 CMD:report(playerid, params[])
 {
@@ -4855,7 +5205,7 @@ CMD:report(playerid, params[])
 		if(strlen(report) < 1) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El reporte es muy corto.");
 		if(strlen(report) > 100) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} El reporte es muy largo..");
         if(!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_RED, "ERROR:{FFFFFF} Ese jugador no está en línea.");
-		format(string, sizeof(string), "REPORT:{FFFFFF} %s reported %s (%d)", GetName(playerid), GetName(targetid), targetid);
+		format(string, sizeof(string), "REPORT:{FFFFFF} %s reportó a %s (%d)", GetName(playerid), GetName(targetid), targetid);
         MessageToAdmins(yellow, string);
 		format(string, sizeof(string), "REASON:{FFFFFF} %s", report);
 		MessageToAdmins(yellow, string);
